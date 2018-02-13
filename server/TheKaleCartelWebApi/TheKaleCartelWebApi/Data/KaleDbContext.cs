@@ -19,8 +19,8 @@ namespace TheKaleCartelWebApi.Data
         {
             builder.UseSqlServer(
                 @"Server=tcp:thekalecartel.database.windows.net,1433;Initial Catalog=TheKaleCartel;Persist Security Info=False;
-                        User ID=*;
-                        Password=*;
+                        User ID=christianbondesen;
+                        Password=Gbv88jak;
                         MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         }
 

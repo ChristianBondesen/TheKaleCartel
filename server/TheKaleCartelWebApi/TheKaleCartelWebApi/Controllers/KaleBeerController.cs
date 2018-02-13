@@ -30,35 +30,20 @@ namespace TheKaleCartelWebApi.Controllers
         {
             IEnumerable<KaleBeerDto> orderedBeers;
 
-            try
-            {
-                var beers = _repo.GetAll().OrderBy(b => b.CreationDate)
-                    .Skip((parameters.PageNumber - 1) * parameters.PageSize).Take(parameters.PageNumber);
+            var beers = _repo.GetAll().OrderBy(b => b.CreationDate)
+                .Skip((parameters.PageNumber - 1) * parameters.PageSize).Take(parameters.PageNumber);
 
-                orderedBeers = _mapper.Map<IEnumerable<KaleBeerDto>>(beers);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return null;
-            }
-
+            orderedBeers = _mapper.Map<IEnumerable<KaleBeerDto>>(beers);
+            
             return orderedBeers;
         }
 
         [HttpPost]
         public KaleBeerDto AddNewKaleBeer([FromBody] KaleBeerDto kalebeer)
         {
-            try
-            {
-                var beer = _mapper.Map<KaleBeer>(kalebeer);
-                _repo.Add(beer);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return null;
-            }
+
+            var beer = _mapper.Map<KaleBeer>(kalebeer);
+            _repo.Add(beer);
 
             return kalebeer;
         }
