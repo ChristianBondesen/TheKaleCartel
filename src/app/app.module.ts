@@ -15,6 +15,7 @@ import { NameMaterialModule } from './material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { GetBeerService } from './beer/GetBeer.service';
 import { ProfileGetService } from './profile-get.service';
+import { TotalUserGetService } from './total-user-get';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { ProfileGetService } from './profile-get.service';
     HttpClientModule,
     NameMaterialModule
   ],
-  providers: [GetBeerService, ProfileGetService],
+  providers: [GetBeerService, ProfileGetService, TotalUserGetService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
