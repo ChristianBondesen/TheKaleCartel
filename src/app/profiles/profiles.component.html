@@ -1,3 +1,20 @@
-<div *ngFor="let profile of profiles | async">
-  {{profile.Name}}
+<div id="div2">
+  <div id="div1" class="example-card" *ngFor="let profile of profiles | async">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title> {{profile.name}}</mat-card-title>
+        <mat-card-subtitle> {{profile.nickname}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image [src]="profile.pictureUrl" alt="Photo of a Shiba Inu">
+      <mat-card-content>
+        <p>
+          {{profile.description}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <a [routerLink]="['details',profile.name]" mat-button>Profile Details</a>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>
