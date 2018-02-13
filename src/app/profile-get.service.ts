@@ -4,5 +4,5 @@ import { User } from './profiles/profile/User';
 
 @Injectable()
 export class ProfileGetService extends BackendGetService<User> {
-  public url = 'http://thekalecartelwebapi.azurewebsites.net/api/kaleprofile/';
+  public url = 'https://thekalecartelwebapi.azurewebsites.net/api/kaleprofile/';
 }
