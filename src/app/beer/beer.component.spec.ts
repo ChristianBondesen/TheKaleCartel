@@ -32,7 +32,7 @@ describe('BeerComponent', () => {
       const fixture = TestBed.createComponent(BeerComponent);
       const app = fixture.debugElement;
       el = app.query(By.css('h2')).nativeElement;
-      expect(el.textContent).toContain(component.Beer.Name);
+      expect(el.textContent).toContain(component.Beer.name);
     })
   );
   it(
@@ -42,7 +42,7 @@ describe('BeerComponent', () => {
       const app = fixture.debugElement;
       elList = app.queryAll(By.css('div')).map((i) => i.nativeElement);
       const description = elList.find(
-        (j) => j.textContent === component.Beer.Description
+        (j) => j.textContent === component.Beer.description
       );
       expect(description).toBeDefined();
     })
@@ -53,7 +53,7 @@ describe('BeerComponent', () => {
       const fixture = TestBed.createComponent(BeerComponent);
       const app = fixture.debugElement;
       elList = app.queryAll(By.css('div')).map((i) => i.nativeElement);
-      const vol = elList.find((j) => j.textContent === component.Beer.Vol);
+      const vol = elList.find((j) => j.textContent === component.Beer.vol);
       expect(vol).toBeDefined();
     })
   );
@@ -63,7 +63,7 @@ describe('BeerComponent', () => {
       const fixture = TestBed.createComponent(BeerComponent);
       const app = fixture.debugElement;
       elList = app.queryAll(By.css('div')).map((i) => i.nativeElement);
-      const date = elList.find((j) => j.textContent === component.Beer.Date);
+      const date = elList.find((j) => j.textContent === component.Beer.date);
       expect(date).toBeDefined();
     })
   );
@@ -74,7 +74,7 @@ describe('BeerComponent', () => {
       const app = fixture.debugElement;
       elList = app.queryAll(By.css('div')).map((i) => i.nativeElement);
       const rating = elList.find(
-        (j) => j.textContent === component.Beer.Rating
+        (j) => j.textContent === component.Beer.rating
       );
       expect(rating).toBeDefined();
     })
