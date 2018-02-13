@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,7 +18,10 @@ namespace TheKaleCartelWebApi.Data
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
             builder.UseSqlServer(
-                @"Server=tcp:thekalecartel.database.windows.net,1433;Initial Catalog=TheKaleCartel;Persist Security Info=False;User ID=*;Password=*;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+                @"Server=tcp:thekalecartel.database.windows.net,1433;Initial Catalog=TheKaleCartel;Persist Security Info=False;
+                        User ID=*;
+                        Password=*;
+                        MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

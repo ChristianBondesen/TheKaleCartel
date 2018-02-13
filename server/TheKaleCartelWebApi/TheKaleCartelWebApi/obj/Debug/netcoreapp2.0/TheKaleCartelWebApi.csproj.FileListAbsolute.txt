@@ -9,3 +9,14 @@ C:\Users\Udvikler\source\repos\TheKaleCartelWebApi\TheKaleCartelWebApi\obj\Debug
 C:\Users\Udvikler\source\repos\TheKaleCartelWebApi\TheKaleCartelWebApi\obj\Debug\netcoreapp2.0\TheKaleCartelWebApi.AssemblyInfo.cs
 C:\Users\Udvikler\source\repos\TheKaleCartelWebApi\TheKaleCartelWebApi\obj\Debug\netcoreapp2.0\TheKaleCartelWebApi.dll
 C:\Users\Udvikler\source\repos\TheKaleCartelWebApi\TheKaleCartelWebApi\obj\Debug\netcoreapp2.0\TheKaleCartelWebApi.pdb
+C:\Users\Udvikler\TheKaleCartel\server\TheKaleCartelWebApi\TheKaleCartelWebApi\bin\Debug\netcoreapp2.0\TheKaleCartelWebApi.deps.json
+C:\Users\Udvikler\TheKaleCartel\server\TheKaleCartelWebApi\TheKaleCartelWebApi\bin\Debug\netcoreapp2.0\TheKaleCartelWebApi.runtimeconfig.json
+C:\Users\Udvikler\TheKaleCartel\server\TheKaleCartelWebApi\TheKaleCartelWebApi\bin\Debug\netcoreapp2.0\TheKaleCartelWebApi.runtimeconfig.dev.json
+C:\Users\Udvikler\TheKaleCartel\server\TheKaleCartelWebApi\TheKaleCartelWebApi\bin\Debug\netcoreapp2.0\TheKaleCartelWebApi.dll
+C:\Users\Udvikler\TheKaleCartel\server\TheKaleCartelWebApi\TheKaleCartelWebApi\bin\Debug\netcoreapp2.0\TheKaleCartelWebApi.pdb
+C:\Users\Udvikler\TheKaleCartel\server\TheKaleCartelWebApi\TheKaleCartelWebApi\obj\Debug\netcoreapp2.0\TheKaleCartelWebApi.csprojResolveAssemblyReference.cache
+C:\Users\Udvikler\TheKaleCartel\server\TheKaleCartelWebApi\TheKaleCartelWebApi\obj\Debug\netcoreapp2.0\TheKaleCartelWebApi.csproj.CoreCompileInputs.cache
+C:\Users\Udvikler\TheKaleCartel\server\TheKaleCartelWebApi\TheKaleCartelWebApi\obj\Debug\netcoreapp2.0\TheKaleCartelWebApi.AssemblyInfoInputs.cache
+C:\Users\Udvikler\TheKaleCartel\server\TheKaleCartelWebApi\TheKaleCartelWebApi\obj\Debug\netcoreapp2.0\TheKaleCartelWebApi.AssemblyInfo.cs
+C:\Users\Udvikler\TheKaleCartel\server\TheKaleCartelWebApi\TheKaleCartelWebApi\obj\Debug\netcoreapp2.0\TheKaleCartelWebApi.dll
+C:\Users\Udvikler\TheKaleCartel\server\TheKaleCartelWebApi\TheKaleCartelWebApi\obj\Debug\netcoreapp2.0\TheKaleCartelWebApi.pdb

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -53,7 +53,6 @@ namespace TheKaleCartelWebApi.Controllers
             {
                 var beer = _mapper.Map<KaleBeer>(kalebeer);
                 _repo.Add(beer);
-                _repo.Save();
             }
             catch (Exception e)
             {

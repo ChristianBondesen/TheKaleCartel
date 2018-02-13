@@ -14451,11 +14451,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\Udvikler\\source\\repos\\TheKaleCartelWebApi\\TheKaleCartel.Test\\ThekaleCartel.Test.csproj",
+      "projectUniqueName": "C:\\Users\\Udvikler\\TheKaleCartel\\server\\TheKaleCartelWebApi\\TheKaleCartel.Test\\ThekaleCartel.Test.csproj",
       "projectName": "ThekaleCartel.Test",
-      "projectPath": "C:\\Users\\Udvikler\\source\\repos\\TheKaleCartelWebApi\\TheKaleCartel.Test\\ThekaleCartel.Test.csproj",
+      "projectPath": "C:\\Users\\Udvikler\\TheKaleCartel\\server\\TheKaleCartelWebApi\\TheKaleCartel.Test\\ThekaleCartel.Test.csproj",
       "packagesPath": "C:\\Users\\Udvikler\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Udvikler\\source\\repos\\TheKaleCartelWebApi\\TheKaleCartel.Test\\obj\\",
+      "outputPath": "C:\\Users\\Udvikler\\TheKaleCartel\\server\\TheKaleCartelWebApi\\TheKaleCartel.Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -14474,8 +14474,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "C:\\Users\\Udvikler\\source\\repos\\TheKaleCartelWebApi\\TheKaleCartelWebApi\\TheKaleCartelWebApi.csproj": {
-              "projectPath": "C:\\Users\\Udvikler\\source\\repos\\TheKaleCartelWebApi\\TheKaleCartelWebApi\\TheKaleCartelWebApi.csproj"
+            "C:\\Users\\Udvikler\\TheKaleCartel\\server\\TheKaleCartelWebApi\\TheKaleCartelWebApi\\TheKaleCartelWebApi.csproj": {
+              "projectPath": "C:\\Users\\Udvikler\\TheKaleCartel\\server\\TheKaleCartelWebApi\\TheKaleCartelWebApi\\TheKaleCartelWebApi.csproj"
             }
           }
         }

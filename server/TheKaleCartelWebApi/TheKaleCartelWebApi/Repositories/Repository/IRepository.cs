@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -10,7 +10,7 @@ namespace TheKaleCartelWebApi.Repositories.Repository
     {
         IQueryable<T> GetAll();
         T Get(Expression<Func<T, bool>> match);
-        T Add(T t);
+        void Add(T t);
         void Save();
     }
 }

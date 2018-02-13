@@ -13308,11 +13308,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\Udvikler\\source\\repos\\TheKaleCartelWebApi\\TheKaleCartelWebApi\\TheKaleCartelWebApi.csproj",
+      "projectUniqueName": "C:\\Users\\Udvikler\\TheKaleCartel\\server\\TheKaleCartelWebApi\\TheKaleCartelWebApi\\TheKaleCartelWebApi.csproj",
       "projectName": "TheKaleCartelWebApi",
-      "projectPath": "C:\\Users\\Udvikler\\source\\repos\\TheKaleCartelWebApi\\TheKaleCartelWebApi\\TheKaleCartelWebApi.csproj",
+      "projectPath": "C:\\Users\\Udvikler\\TheKaleCartel\\server\\TheKaleCartelWebApi\\TheKaleCartelWebApi\\TheKaleCartelWebApi.csproj",
       "packagesPath": "C:\\Users\\Udvikler\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Udvikler\\source\\repos\\TheKaleCartelWebApi\\TheKaleCartelWebApi\\obj\\",
+      "outputPath": "C:\\Users\\Udvikler\\TheKaleCartel\\server\\TheKaleCartelWebApi\\TheKaleCartelWebApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

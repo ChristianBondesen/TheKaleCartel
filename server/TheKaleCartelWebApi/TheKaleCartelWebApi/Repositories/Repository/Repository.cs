@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -27,10 +27,10 @@ namespace TheKaleCartelWebApi.Repositories.Repository
             return _context.Set<T>().Single(match);
         }
 
-        public virtual T Add(T t)
+        public virtual void Add(T t)
         {
             _context.Set<T>().Add(t);
-            return t;
+            Save();
         }
 
         public void Save()
