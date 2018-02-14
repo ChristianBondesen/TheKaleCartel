@@ -10,8 +10,14 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'event', component: EventComponent },
-  { path: 'profiles', component: ProfilesComponent },
-  { path: 'profiles/:person', component: ProfileDetailsComponent },
+  {
+    path: 'profiles',
+    loadChildren: 'app/profiles/profiles.module#ProfilesModule'
+  },
+  {
+    path: 'recipies',
+    loadChildren: 'app/recipies/recipies.module#RecipiesModule'
+  },
   { path: '**', component: NotFoundComponent }
 ];
 

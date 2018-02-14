@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ProfileGetService } from '../profile-get.service';
 import { Observable } from 'rxjs/Observable';
 import { User } from './User';
+import { ProfileGetService } from './profile-get.service';
 
 @Component({
   selector: 'app-profiles',

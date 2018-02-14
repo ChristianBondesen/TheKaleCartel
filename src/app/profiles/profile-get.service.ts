@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BackendGetService } from './BackendGetService';
-import { User } from './profiles/User';
+import { BackendGetService } from '../Shared Components/BackendGetService';
+import { User } from './User';
 
 @Injectable()
 export class ProfileGetService extends BackendGetService<User> {
