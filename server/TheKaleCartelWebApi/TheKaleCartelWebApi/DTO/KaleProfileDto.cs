@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Principal;
@@ -19,5 +19,8 @@ namespace TheKaleCartelWebApi.DTO
 
         [Required]
         public string PictureUrl { get; set; }
+
+        [Required]
+        public string Nickname { get; set; }
     }
 }
