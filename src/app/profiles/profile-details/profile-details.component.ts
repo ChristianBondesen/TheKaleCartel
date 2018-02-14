@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { GetBeerService } from '../../beer/GetBeer.service';
+
 import { Observable } from 'rxjs/Observable';
-import { Beer } from '../../beer/Beer';
+
 import { ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
-import { ProfileGetService } from '../../profile-get.service';
-import { TotalUserGetService } from '../../total-user-get';
 import { TotalUser } from '../User';
+import { TotalUserGetService } from './total-user-get';
 
 @Component({
   selector: 'app-profile-details',

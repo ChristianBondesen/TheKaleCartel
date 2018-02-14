@@ -40,8 +40,9 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { PlatformModule } from '@angular/cdk/platform';
 import { ObserversModule } from '@angular/cdk/observers';
 import { PortalModule } from '@angular/cdk/portal';
-import { BeerComponent } from './beer/beer.component';
-import { RecipeComponent } from './recipe/recipe.component';
+import { RecipeService } from './recipies/recipe.service';
+import { BeerComponent } from './Shared Components/beer/beer.component';
+import { RecipeComponent } from './Shared Components/recipe/recipe.component';
 
 /**
  * NgModule that includes all Material modules.

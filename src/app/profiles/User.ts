@@ -1,5 +1,5 @@
-import { Beer } from '../beer/Beer';
-import { Recipe } from '../recipe/Recipe';
+import { Beer } from '../Shared Components/beer/Beer';
+import { Recipe } from '../Shared Components/recipe/Recipe';
 
 export class User {
   description: string;
