@@ -13,6 +13,7 @@ import { TotalUserGetService } from './total-user-get';
 import { EventComponent } from './event/event.component';
 import { NewEventComponent } from './event/new-event/new-event.component';
 import { SharedModule } from './shared.module';
+import { EventGetService } from './event/event-get.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { SharedModule } from './shared.module';
     SharedModule
   ],
   exports: [],
-  providers: [GetBeerService, ProfileGetService, TotalUserGetService],
+  providers: [GetBeerService, ProfileGetService, TotalUserGetService, EventGetService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
