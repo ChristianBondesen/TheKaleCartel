@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 using TheKaleCartelWebApi.Models;
 
@@ -20,6 +20,5 @@ namespace TheKaleCartelWebApi.DTO
         public DateTime CreationDate { get; set; }
 
         public int KaleProfileId { get; set; }
-        public KaleProfile KaleProfile { get; set; }
     }
 }
