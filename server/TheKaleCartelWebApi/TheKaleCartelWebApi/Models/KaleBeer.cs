@@ -13,6 +13,5 @@ namespace TheKaleCartelWebApi.Models
         public string Description { get; set; }
         
         public int KaleProfileId { get; set; }
-        public KaleProfile KaleProfile { get; set; }
     }
 }

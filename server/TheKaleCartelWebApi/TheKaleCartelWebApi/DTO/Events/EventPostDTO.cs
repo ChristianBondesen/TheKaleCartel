@@ -11,7 +11,8 @@ namespace TheKaleCartelWebApi.DTO.Events
   public class EventPostDTO
   {
     public int KaleEventId { get; set; }
-
+    [Required]
+    public string KaleProfileName { get; set; }
     [Required]
     public int KaleProfileId { get; set; }
 
@@ -20,5 +21,9 @@ namespace TheKaleCartelWebApi.DTO.Events
 
     [Required]
     public string Name { get; set; }
+    [Required]
+    public IEnumerable<KaleBeerGetEventDTO> KaleBeers { get; set; }
+    [Required]
+    public IEnumerable<KaleRecipeGetEventDTO> KaleRecipes { get; set; }
   }
 }

@@ -24,12 +24,16 @@ namespace TheKaleCartelWebApi.Infrastructrure
 
       CreateMap<KaleBeer, KaleBeerDto>();
       CreateMap<KaleBeer, KaleBeerDetailsDto>().ReverseMap();
+      CreateMap<KaleBeer, KaleBeerGetEventDTO>().ReverseMap();
 
       CreateMap<KaleRecipe, KaleRecipeDto>();
       CreateMap<KaleRecipe, KaleRecipeDetailsDto>().ReverseMap();
+      CreateMap<KaleRecipe, KaleRecipeGetEventDTO>().ReverseMap();
 
       CreateMap<KaleEvent, EventPostDTO>().ReverseMap();
       CreateMap<KaleEvent, GetEventDTO>().ReverseMap();
+
+      
     }
   }
 }

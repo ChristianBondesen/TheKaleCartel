@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace TheKaleCartelWebApi.Models
 {
@@ -9,8 +9,7 @@ namespace TheKaleCartelWebApi.Models
         public int Rating { get; set; }
         public string CoursOfAction { get; set; }
         public DateTime CreationDate { get; set; }
-
+      public string PictureUrl { get; set; }
         public int KaleProfileId { get; set; }
-        public KaleProfile KaleProfile { get; set; }
     }
 }
