@@ -40,8 +40,9 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { PlatformModule } from '@angular/cdk/platform';
 import { ObserversModule } from '@angular/cdk/observers';
 import { PortalModule } from '@angular/cdk/portal';
-import { BeerComponent } from './beer/beer.component';
-import { RecipeComponent } from './recipe/recipe.component';
+import { RecipeService } from './recipies/recipe.service';
+import { BeerComponent } from './Shared Components/beer/beer.component';
+import { RecipeComponent } from './Shared Components/recipe/recipe.component';
 
 /**
  * NgModule that includes all Material modules.
@@ -91,6 +92,48 @@ import { RecipeComponent } from './recipe/recipe.component';
     PortalModule,
     BeerComponent,
     RecipeComponent
+  ],
+  imports: [
+    MatAutocompleteModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatTableModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSlideToggleModule,
+    MatSliderModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatStepperModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    MatNativeDateModule,
+    CdkTableModule,
+    A11yModule,
+    BidiModule,
+    CdkAccordionModule,
+    ObserversModule,
+    OverlayModule,
+    PlatformModule,
+    PortalModule
   ]
 })
 export class SharedModule {}

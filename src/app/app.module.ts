@@ -7,13 +7,13 @@ import { NavbarComponent } from './layout/navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { FeatureRoutingModule } from './routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { GetBeerService } from './beer/GetBeer.service';
-import { ProfileGetService } from './profile-get.service';
-import { TotalUserGetService } from './total-user-get';
 import { EventComponent } from './event/event.component';
 import { NewEventComponent } from './event/new-event/new-event.component';
 import { SharedModule } from './shared.module';
 import { EventGetService } from './event/event-get.service';
+import { GetBeerService } from './Shared Components/beer/GetBeer.service';
+import { ProfileGetService } from './profiles/profile-get.service';
+import { TotalUserGetService } from './profiles/profile-details/total-user-get';
 
 @NgModule({
   declarations: [

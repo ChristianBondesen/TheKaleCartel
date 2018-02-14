@@ -3,16 +3,34 @@
         {{ (user)?.name }}
     </div>
 </div>
-<div class="body">
-    <div class="content">
+<mat-card class="body">
+    <mat-card>
         Kål Niveau: {{ (user)?.totalKaleLevel }}
-        <hr> Beskrivelse: {{ (user)?.description }}
-        <hr>Det flydende:
+    </mat-card>
+    <mat-card>
+        Beskrivelse: {{ (user)?.description }}
+    </mat-card>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Det våde:
+            </mat-panel-title>
+        </mat-expansion-panel-header>
 
         <app-beer *ngFor="let beer of user.kaleBeers" [Beer]="beer"></app-beer>
 
+    </mat-expansion-panel>
 
-        <hr>Det faste: {{ (user)?.kaleRecipes | json}}
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Det faste:
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        {{ (user)?.kaleRecipes | json}}
+
+    </mat-expansion-panel>
 
 
 
@@ -20,4 +38,7 @@
 
 
 
-    </div>
+
+
+
+</mat-card>

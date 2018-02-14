@@ -14,6 +14,10 @@ const routes: Routes = [
     path: 'profiles',
     loadChildren: 'app/profiles/profiles.module#ProfilesModule'
   },
+  {
+    path: 'recipies',
+    loadChildren: 'app/recipies/recipies.module#RecipiesModule'
+  },
   { path: '**', component: NotFoundComponent }
 ];
 
