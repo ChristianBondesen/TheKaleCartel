@@ -1,8 +1,9 @@
 export interface Recipe {
   name: string;
   rating: string;
-  picUrl?: string;
-  date: Date;
+  creationDate: Date;
   courseOfAction: string;
-  person: string;
+  kaleProfileId: number;
+  kaleRecipeId: number;
+  pictureUrl: string;
 }

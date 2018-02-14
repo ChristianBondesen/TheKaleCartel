@@ -10,24 +10,15 @@ import { MatTableDataSource } from '@angular/material';
   styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent implements OnInit {
-  public recipies: Recipe[];
-  public displayedColumns = [
-    'Name',
-    'Rating',
-    'Date',
-    'picUrl',
-    'Course of Action',
-    'Person'
-  ];
+  public displayedColumns = ['Name', 'Rating', 'Date', 'Details'];
   public dataSource: MatTableDataSource<Recipe>;
 
   constructor(private service: RecipeService) {}
 
   ngOnInit() {
     this.service.GetAll().subscribe((data) => {
-      this.recipies = data;
+      this.dataSource = new MatTableDataSource(data);
     });
-    this.dataSource = new MatTableDataSource(this.recipies);
   }
 
   public applyFilter(filterValue: string) {

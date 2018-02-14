@@ -6,42 +6,32 @@
     </mat-form-field>
   </div>
 
-  <mat-table #table [dataSource]="recipies">
+  <mat-table #table [dataSource]="dataSource">
 
     <!-- Name Column -->
     <ng-container matColumnDef="Name">
       <mat-header-cell *matHeaderCellDef> Name: </mat-header-cell>
-      <mat-cell *matCellDef="let recipe"> {{recipe.Name}} </mat-cell>
+      <mat-cell *matCellDef="let recipe"> {{recipe.name}} </mat-cell>
     </ng-container>
 
     <!-- Rating Column -->
     <ng-container matColumnDef="Rating">
       <mat-header-cell *matHeaderCellDef> Rating: </mat-header-cell>
-      <mat-cell *matCellDef="let recipe"> {{recipe.Rating}} </mat-cell>
+      <mat-cell *matCellDef="let recipe"> {{recipe.rating}} </mat-cell>
     </ng-container>
 
     <!-- Date Column -->
     <ng-container matColumnDef="Date">
       <mat-header-cell *matHeaderCellDef> Date: </mat-header-cell>
-      <mat-cell *matCellDef="let recipe"> {{recipe.Date}} </mat-cell>
+      <mat-cell *matCellDef="let recipe"> {{recipe.creationDate | date}} </mat-cell>
     </ng-container>
 
-    <!-- Picture Column -->
-    <ng-container matColumnDef="picUrl">
-      <mat-header-cell *matHeaderCellDef> picture: </mat-header-cell>
-      <mat-cell *matCellDef="let recipe"> {{recipe.picUrl}} </mat-cell>
-    </ng-container>
-
-    <!-- Date Column -->
-    <ng-container matColumnDef="Course of Action">
-      <mat-header-cell *matHeaderCellDef> Course of Acton: </mat-header-cell>
-      <mat-cell *matCellDef="let recipe"> {{recipe.courseOfAction}} </mat-cell>
-    </ng-container>
-
-    <!-- Date Column -->
-    <ng-container matColumnDef="Person">
-      <mat-header-cell *matHeaderCellDef> Person: </mat-header-cell>
-      <mat-cell *matCellDef="let recipe"> {{recipe.person}} </mat-cell>
+    <!-- Details Column -->
+    <ng-container matColumnDef="Details">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let recipe">
+        <a [routerLink]="[recipe.name]" mat-button>Recipe Details</a>
+      </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
