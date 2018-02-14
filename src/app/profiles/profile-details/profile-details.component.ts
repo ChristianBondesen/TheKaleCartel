@@ -3,9 +3,9 @@ import { GetBeerService } from '../../beer/GetBeer.service';
 import { Observable } from 'rxjs/Observable';
 import { Beer } from '../../beer/Beer';
 import { ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
-import { TotalUser } from '../profile/User';
 import { ProfileGetService } from '../../profile-get.service';
 import { TotalUserGetService } from '../../total-user-get';
+import { TotalUser } from '../User';
 
 @Component({
   selector: 'app-profile-details',
@@ -13,7 +13,6 @@ import { TotalUserGetService } from '../../total-user-get';
   styleUrls: ['./profile-details.component.css']
 })
 export class ProfileDetailsComponent implements OnInit {
-  TotalUser: any;
   user: TotalUser;
   person: string;
   constructor(
@@ -25,7 +24,7 @@ export class ProfileDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.userService.GetByName(this.person).subscribe((data) => {
-      this.user = data;
+      this.user = Object.assign({}, data);
     });
   }
 }

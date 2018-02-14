@@ -1,7 +1,10 @@
 export interface Beer {
+  kaleBeerId: number;
   name: string;
+  description: string;
+  pictureUrl: string;
   volPercentage: number;
-  date: Date;
-  person: string;
+  creationDate: Date;
+  kaleProfileId: number;
   rating: number;
 }
