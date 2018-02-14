@@ -27,7 +27,7 @@ namespace TheKaleCartelWebApi.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<KaleBeerDto> Index(KaleBeerParams parameters)
+        public IActionResult Index(KaleBeerParams parameters)
         {
             IEnumerable<KaleBeerDto> orderedBeers;
 
@@ -36,33 +36,53 @@ namespace TheKaleCartelWebApi.Controllers
 
             orderedBeers = _mapper.Map<IEnumerable<KaleBeerDto>>(beers);
             
-            return orderedBeers;
+            return Ok(orderedBeers);
         }
 
         [HttpGet("name/{name}")]
-        public KaleBeerDetailsDto GetBeerByName(string name)
+        public IActionResult GetBeerByName(string name)
         {
           var beer = _repo.Get(b => b.Name == name);
+
+          if (beer == null)
+          {
+            return BadRequest();
+          }
+          
           var orderedBeer = _mapper.Map<KaleBeerDetailsDto>(beer);
-          return orderedBeer;
+          return Ok(orderedBeer);
         }
 
         [HttpGet("id/{id}")]
-        public KaleBeerDetailsDto GetBeerById(int id)
+        public IActionResult GetBeerById(int id)
         {
           var beer = _repo.Get(b => b.KaleBeerId == id);
-          var orderedBeer = _mapper.Map<KaleBeerDetailsDto>(beer);
-          return orderedBeer;
+
+          if (beer == null)
+          {
+            return BadRequest();
+          }
+
+      var orderedBeer = _mapper.Map<KaleBeerDetailsDto>(beer);
+          return Ok(orderedBeer);
         }
 
 
         [HttpPost]
-        public KaleBeerDetailsDto AddNewKaleBeer([FromBody] KaleBeerDetailsDto kalebeer)
+        public IActionResult AddNewKaleBeer([FromBody] KaleBeerDetailsDto kalebeer)
         {
+          if (ModelState.IsValid)
+          {
             var beer = _mapper.Map<KaleBeer>(kalebeer);
             _repo.Add(beer);
 
-            return kalebeer;
+            return Ok(kalebeer);
+          }
+          else
+          {
+            return BadRequest(kalebeer);
+          }
+
         }
     }
 }

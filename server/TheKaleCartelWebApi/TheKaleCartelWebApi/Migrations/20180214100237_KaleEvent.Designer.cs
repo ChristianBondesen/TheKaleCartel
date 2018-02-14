@@ -11,9 +11,10 @@ using TheKaleCartelWebApi.Data;
 namespace TheKaleCartelWebApi.Migrations
 {
     [DbContext(typeof(KaleDbContext))]
-    partial class KaleDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180214100237_KaleEvent")]
+    partial class KaleEvent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,8 +30,6 @@ namespace TheKaleCartelWebApi.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<int?>("KaleEventId");
-
                     b.Property<int>("KaleProfileId");
 
                     b.Property<string>("Name");
@@ -43,8 +42,6 @@ namespace TheKaleCartelWebApi.Migrations
 
                     b.HasKey("KaleBeerId");
 
-                    b.HasIndex("KaleEventId");
-
                     b.HasIndex("KaleProfileId");
 
                     b.ToTable("KaleBeers");
@@ -52,7 +49,7 @@ namespace TheKaleCartelWebApi.Migrations
 
             modelBuilder.Entity("TheKaleCartelWebApi.Models.KaleEvent", b =>
                 {
-                    b.Property<int>("KaleEventId")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("EventDate");
@@ -61,9 +58,7 @@ namespace TheKaleCartelWebApi.Migrations
 
                     b.Property<string>("Name");
 
-                    b.HasKey("KaleEventId");
-
-                    b.HasIndex("KaleProfileId");
+                    b.HasKey("Id");
 
                     b.ToTable("KaleEvents");
                 });
@@ -97,8 +92,6 @@ namespace TheKaleCartelWebApi.Migrations
 
                     b.Property<DateTime>("CreationDate");
 
-                    b.Property<int?>("KaleEventId");
-
                     b.Property<int>("KaleProfileId");
 
                     b.Property<string>("Name");
@@ -107,8 +100,6 @@ namespace TheKaleCartelWebApi.Migrations
 
                     b.HasKey("KaleRecipeId");
 
-                    b.HasIndex("KaleEventId");
-
                     b.HasIndex("KaleProfileId");
 
                     b.ToTable("KaleRecipes");
@@ -116,30 +107,14 @@ namespace TheKaleCartelWebApi.Migrations
 
             modelBuilder.Entity("TheKaleCartelWebApi.Models.KaleBeer", b =>
                 {
-                    b.HasOne("TheKaleCartelWebApi.Models.KaleEvent")
-                        .WithMany("KaleBeers")
-                        .HasForeignKey("KaleEventId");
-
                     b.HasOne("TheKaleCartelWebApi.Models.KaleProfile", "KaleProfile")
                         .WithMany("KaleBeers")
-                        .HasForeignKey("KaleProfileId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("TheKaleCartelWebApi.Models.KaleEvent", b =>
-                {
-                    b.HasOne("TheKaleCartelWebApi.Models.KaleProfile", "KaleProfile")
-                        .WithMany()
                         .HasForeignKey("KaleProfileId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("TheKaleCartelWebApi.Models.KaleRecipe", b =>
                 {
-                    b.HasOne("TheKaleCartelWebApi.Models.KaleEvent")
-                        .WithMany("KaleRecipes")
-                        .HasForeignKey("KaleEventId");
-
                     b.HasOne("TheKaleCartelWebApi.Models.KaleProfile", "KaleProfile")
                         .WithMany("KaleRecipes")
                         .HasForeignKey("KaleProfileId")

@@ -29,6 +29,11 @@ namespace TheKaleCartelWebApi.Controllers
       {
         var recipies = _mapper.Map<IEnumerable<KaleRecipeDto>>(_repo.GetAll());
 
+        if (recipies == null)
+        {
+          return BadRequest();
+        }
+
         return Ok(recipies);
       }
 
@@ -48,11 +53,19 @@ namespace TheKaleCartelWebApi.Controllers
       [HttpPost]
       public IActionResult AddRecipe([FromBody] KaleRecipeDetailsDto recipe)
       {
-        var newRecipe = _mapper.Map<KaleRecipe>(recipe);
+        if (ModelState.IsValid)
+        {
+          var newRecipe = _mapper.Map<KaleRecipe>(recipe);
 
-        _repo.Add(newRecipe);
+          _repo.Add(newRecipe);
 
-        return Ok(recipe);
+          return Ok(recipe);
+        }
+        else
+        {
+          return BadRequest(recipe);
+        }
+
       }
     }
 }

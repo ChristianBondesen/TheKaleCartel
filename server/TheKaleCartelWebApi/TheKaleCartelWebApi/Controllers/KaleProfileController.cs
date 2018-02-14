@@ -27,19 +27,29 @@ namespace TheKaleCartelWebApi.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<KaleProfileDto> Index()
+        public IActionResult Index()
         {
             var profiles = _mapper.Map<IEnumerable<KaleProfileDto>>(_repo.GetAll().OrderBy(p => p.KaleProfileId));
 
-            return profiles;
+          if (profiles == null)
+          {
+            return BadRequest();
+          }
+
+            return Ok(profiles);
         }
 
         [HttpGet("{name}")]
-        public KaleProfileDetailsDto GetByName(string name)
+        public IActionResult GetByName(string name)
         {
             var profile = _mapper.Map<KaleProfileDetailsDto>(_repo.Get(p => p.Name == name));
 
-            return profile;
+          if (profile == null)
+          {
+            return BadRequest();
+          }
+
+            return Ok(profile);
         }
     }
 }
