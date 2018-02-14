@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { EventComponent } from './event/event.component';
 import { NewEventComponent } from './event/new-event/new-event.component';
 import { SharedModule } from './shared.module';
+import { EventGetService } from './event/event-get.service';
 import { GetBeerService } from './Shared Components/beer/GetBeer.service';
 import { ProfileGetService } from './profiles/profile-get.service';
 import { TotalUserGetService } from './profiles/profile-details/total-user-get';
@@ -30,7 +31,7 @@ import { TotalUserGetService } from './profiles/profile-details/total-user-get';
     SharedModule
   ],
   exports: [],
-  providers: [GetBeerService, ProfileGetService, TotalUserGetService],
+  providers: [GetBeerService, ProfileGetService, TotalUserGetService, EventGetService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
