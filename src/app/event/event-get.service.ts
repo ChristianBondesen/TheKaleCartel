@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BackendGetService } from '../BackendGetService';
 import { TotalUser } from '../profiles/User';
 import { CaleEvent } from './caleEvent';
+import { BackendGetService } from '../Shared Components/BackendGetService';
 
 @Injectable()
 export class EventGetService extends BackendGetService<CaleEvent> {

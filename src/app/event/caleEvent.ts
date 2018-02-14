@@ -1,5 +1,5 @@
-import { Beer } from '../beer/Beer';
 import { User } from '../profiles/User';
+import { Beer } from '../Shared Components/beer/Beer';
 
 export class CaleEvent {
   host: string;

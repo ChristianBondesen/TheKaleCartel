@@ -1,4 +1,50 @@
- recipe-list works!
-<div *ngFor="let recipe of recipies | async">
-  {{recipe | json}}
+<br>
+<div class="example-container mat-elevation-z8">
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+    </mat-form-field>
+  </div>
+
+  <mat-table #table [dataSource]="recipies">
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="Name">
+      <mat-header-cell *matHeaderCellDef> Name: </mat-header-cell>
+      <mat-cell *matCellDef="let recipe"> {{recipe.Name}} </mat-cell>
+    </ng-container>
+
+    <!-- Rating Column -->
+    <ng-container matColumnDef="Rating">
+      <mat-header-cell *matHeaderCellDef> Rating: </mat-header-cell>
+      <mat-cell *matCellDef="let recipe"> {{recipe.Rating}} </mat-cell>
+    </ng-container>
+
+    <!-- Date Column -->
+    <ng-container matColumnDef="Date">
+      <mat-header-cell *matHeaderCellDef> Date: </mat-header-cell>
+      <mat-cell *matCellDef="let recipe"> {{recipe.Date}} </mat-cell>
+    </ng-container>
+
+    <!-- Picture Column -->
+    <ng-container matColumnDef="picUrl">
+      <mat-header-cell *matHeaderCellDef> picture: </mat-header-cell>
+      <mat-cell *matCellDef="let recipe"> {{recipe.picUrl}} </mat-cell>
+    </ng-container>
+
+    <!-- Date Column -->
+    <ng-container matColumnDef="Course of Action">
+      <mat-header-cell *matHeaderCellDef> Course of Acton: </mat-header-cell>
+      <mat-cell *matCellDef="let recipe"> {{recipe.courseOfAction}} </mat-cell>
+    </ng-container>
+
+    <!-- Date Column -->
+    <ng-container matColumnDef="Person">
+      <mat-header-cell *matHeaderCellDef> Person: </mat-header-cell>
+      <mat-cell *matCellDef="let recipe"> {{recipe.person}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
 </div>

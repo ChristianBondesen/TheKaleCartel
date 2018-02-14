@@ -5,14 +5,15 @@ import { RecipeDetailsComponent } from './recipe-details/recipe-details.componen
 import { Routes, RouterModule } from '@angular/router';
 import { RecipeService } from './recipe.service';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
+import { SharedModule } from '../shared.module';
 
 const routes: Routes = [
   { path: '', component: RecipeListComponent },
-  { path: ':id', component: RecipeDetailsComponent }
+  { path: ':name', component: RecipeDetailsComponent }
 ];
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(routes)],
+  imports: [CommonModule, RouterModule.forChild(routes), SharedModule],
   declarations: [RecipeDetailsComponent, RecipeListComponent],
   providers: [RecipeService]
 })
