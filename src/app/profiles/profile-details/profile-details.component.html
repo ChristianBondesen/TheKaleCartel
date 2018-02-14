@@ -1,3 +1,23 @@
-<p>
-  profile-details works!
-</p>
+<div class="headerContainer">
+    <div class="header">
+        {{ (user)?.name }}
+    </div>
+</div>
+<div class="body">
+    <div class="content">
+        Kål Niveau: {{ (user)?.totalKaleLevel }}
+        <hr> Beskrivelse: {{ (user)?.description }}
+        <hr>Det flydende:
+
+        <app-beer *ngFor="let beer of user.kaleBeers" [Beer]="beer"></app-beer>
+
+
+        <hr>Det faste: {{ (user)?.kaleRecipes | json}}
+
+
+
+
+
+
+
+    </div>

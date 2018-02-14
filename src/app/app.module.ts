@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { ProfilesComponent } from './profiles/profiles.component';
 import { ProfileDetailsComponent } from './profiles/profile-details/profile-details.component';
-import { ProfileComponent } from './profiles/profile/profile.component';
 import { BeerComponent } from './beer/beer.component';
 import { RecipeComponent } from './recipe/recipe.component';
 import { HomeComponent } from './home/home.component';
@@ -15,6 +14,9 @@ import { NameMaterialModule } from './material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { GetBeerService } from './beer/GetBeer.service';
 import { ProfileGetService } from './profile-get.service';
+import { TotalUserGetService } from './total-user-get';
+import { EventComponent } from './event/event.component';
+import { NewEventComponent } from './event/new-event/new-event.component';
 
 @NgModule({
   declarations: [
@@ -22,10 +24,11 @@ import { ProfileGetService } from './profile-get.service';
     NavbarComponent,
     ProfilesComponent,
     ProfileDetailsComponent,
-    ProfileComponent,
     BeerComponent,
     RecipeComponent,
-    HomeComponent
+    HomeComponent,
+    EventComponent,
+    NewEventComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,7 @@ import { ProfileGetService } from './profile-get.service';
     HttpClientModule,
     NameMaterialModule
   ],
-  providers: [GetBeerService, ProfileGetService],
+  providers: [GetBeerService, ProfileGetService, TotalUserGetService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
