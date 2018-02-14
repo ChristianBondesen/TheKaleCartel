@@ -1,10 +1,11 @@
-import { Beer } from '../../beer/Beer';
-import { Recipe } from '../../recipe/Recipe';
+import { Beer } from '../beer/Beer';
+import { Recipe } from '../recipe/Recipe';
 
 export class User {
   description: string;
   name: string;
-  totaleKaleLevel: string;
+  kaleProfileId: number;
+  totalKaleLevel: number;
   pictureUrl: string;
   nickname: string;
 }
