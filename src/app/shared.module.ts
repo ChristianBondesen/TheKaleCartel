@@ -43,6 +43,7 @@ import { PortalModule } from '@angular/cdk/portal';
 import { RecipeService } from './recipies/recipe.service';
 import { BeerComponent } from './Shared Components/beer/beer.component';
 import { RecipeComponent } from './Shared Components/recipe/recipe.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 /**
  * NgModule that includes all Material modules.
@@ -91,7 +92,9 @@ import { RecipeComponent } from './Shared Components/recipe/recipe.component';
     PlatformModule,
     PortalModule,
     BeerComponent,
-    RecipeComponent
+    RecipeComponent,
+    ReactiveFormsModule,
+    FormsModule
   ],
   imports: [
     MatAutocompleteModule,
@@ -133,7 +136,9 @@ import { RecipeComponent } from './Shared Components/recipe/recipe.component';
     ObserversModule,
     OverlayModule,
     PlatformModule,
-    PortalModule
+    PortalModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class SharedModule {}

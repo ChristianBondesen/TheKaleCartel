@@ -1,3 +1,67 @@
-<p>
-  recipe-create works!
-</p>
+<header>
+  <div class="overlay">
+    <h1 class="logo">Create New Recipe!</h1>
+  </div>
+</header>
+
+
+<form class="example-form" [formGroup]="recipeForm" novalidate>
+  <div>
+    <!-- Name of recipe Input -->
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Recipe Name" type="text" formControlName="name">
+    </mat-form-field>
+
+    <!-- Rating Input -->
+    <mat-form-field class="example-full-width">
+      <input matInput type="text" formControlName="rating">
+      <mat-placeholder>
+        <mat-icon>star_rate</mat-icon>
+        rating 1...5
+      </mat-placeholder>
+    </mat-form-field>
+
+    <!-- Profile Input -->
+    <mat-form-field>
+      <mat-select formControlName="kaleProfileId">
+        <mat-option *ngFor="let profile of selectProfile; let i=index;" [value]="i + 1">{{profile}} </mat-option>
+      </mat-select>
+      <mat-placeholder>
+        <mat-icon>accessible</mat-icon>
+        Select dude here
+      </mat-placeholder>
+    </mat-form-field>
+
+    <!-- PictureUrl Input -->
+    <mat-form-field class="example-full-width">
+      <input matInput type="text" formControlName="pictureUrl">
+      <mat-placeholder>
+        <mat-icon>add_a_photo</mat-icon>
+        Insert picture URL here!
+      </mat-placeholder>
+    </mat-form-field>
+
+
+    <!-- Creation Date input -->
+    <mat-form-field>
+      <input formControlName="creationDate" matInput [matDatepicker]="picker" placeholder="Choose a date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <br>
+    <br>
+    <br> HOLY FUCK HVOR ER DEN GRIM
+    <!-- Course of Action Input -->
+    <div>
+      <label>
+        Course of action:
+        <textarea formControlName="courseOfAction"></textarea>
+      </label>
+    </div>
+
+  </div>
+</form>
+
+<p>Form value: {{ recipeForm.value | json }}</p>
+<p>Form status: {{ recipeForm.status | json }}</p>

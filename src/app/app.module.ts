@@ -31,7 +31,12 @@ import { TotalUserGetService } from './profiles/profile-details/total-user-get';
     SharedModule
   ],
   exports: [],
-  providers: [GetBeerService, ProfileGetService, TotalUserGetService, EventGetService],
+  providers: [
+    GetBeerService,
+    ProfileGetService,
+    TotalUserGetService,
+    EventGetService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
