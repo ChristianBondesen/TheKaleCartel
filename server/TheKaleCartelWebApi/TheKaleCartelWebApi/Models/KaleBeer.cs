@@ -8,7 +8,7 @@ namespace TheKaleCartelWebApi.Models
         public string Name { get; set; }
         public int Rating { get; set; }
         public string PictureUrl { get; set; }
-        public int VolProcentage { get; set; }
+        public int VolPercentage { get; set; }
         public DateTime CreationDate { get; set; }
         public string Description { get; set; }
         

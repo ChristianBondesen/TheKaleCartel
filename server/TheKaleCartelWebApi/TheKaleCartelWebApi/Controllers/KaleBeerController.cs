@@ -38,14 +38,32 @@ namespace TheKaleCartelWebApi.Controllers
             return orderedBeers;
         }
 
-        [HttpPost]
+        [HttpGet("name/{name}")]
+        public KaleBeerDto GetBeerByName(string name)
+        {
+          var beer = _repo.Get(b => b.Name == name);
+          var orderedBeer = _mapper.Map<KaleBeerDto>(beer);
+          return orderedBeer;
+        }
+
+        [HttpGet("id/{id}")]
+        public KaleBeerDto GetBeerById(int id)
+        {
+          var beer = _repo.Get(b => b.KaleBeerId == id);
+          var orderedBeer = _mapper.Map<KaleBeerDto>(beer);
+          return orderedBeer;
+        }
+
+
+    [HttpPost]
         public KaleBeerDto AddNewKaleBeer([FromBody] KaleBeerDto kalebeer)
         {
-
             var beer = _mapper.Map<KaleBeer>(kalebeer);
             _repo.Add(beer);
 
             return kalebeer;
         }
+
+
     }
 }

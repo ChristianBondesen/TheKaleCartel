@@ -17,7 +17,7 @@ namespace TheKaleCartelWebApi.DTO
         public string PictureUrl { get; set; }
 
         [Required]
-        public int VolProcentage { get; set; }
+        public int VolPercentage { get; set; }
 
         [Required]
         public int Rating { get; set; }
