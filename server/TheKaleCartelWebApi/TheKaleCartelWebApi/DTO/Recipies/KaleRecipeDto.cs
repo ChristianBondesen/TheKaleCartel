@@ -13,11 +13,8 @@ namespace TheKaleCartelWebApi.DTO.Recipies
         [Required]
         public int Rating { get; set; }
 
-        [Required]
-        public string CoursOfAction { get; set; }
+      public DateTime CreationDate { get; set; }
 
-        public DateTime CreationDate { get; set; }
-
-        public int KaleProfileId { get; set; }
+    public int KaleProfileId { get; set; }
     }
 }

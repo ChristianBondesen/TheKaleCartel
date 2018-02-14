@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +12,7 @@ using Microsoft.Extensions.Options;
 using TheKaleCartelWebApi.Data;
 using TheKaleCartelWebApi.Repositories.KaleBeerRepository;
 using TheKaleCartelWebApi.Repositories.KaleProfileRepository;
+using TheKaleCartelWebApi.Repositories.KaleRecipeRepository;
 
 namespace TheKaleCartelWebApi
 {
@@ -30,6 +31,7 @@ namespace TheKaleCartelWebApi
             services.AddDbContext<KaleDbContext>();
             services.AddTransient<IKaleProfileRepository, KaleProfileRepository>();
             services.AddTransient<IKaleBeerRepository, KaleBeerRepository>();
+            services.AddTransient<IKaleRecipeRepository, KaleRecipeRepository>();
             services.AddCors();
             services.AddAutoMapper(typeof(Startup));
 
