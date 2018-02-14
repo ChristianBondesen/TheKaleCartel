@@ -1,10 +1,9 @@
-﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+using TheKaleCartelWebApi.DTO.Beer;
+using TheKaleCartelWebApi.DTO.Recipies;
 
-namespace TheKaleCartelWebApi.DTO
+namespace TheKaleCartelWebApi.DTO.Profile
 {
     public class KaleProfileDetailsDto
     {

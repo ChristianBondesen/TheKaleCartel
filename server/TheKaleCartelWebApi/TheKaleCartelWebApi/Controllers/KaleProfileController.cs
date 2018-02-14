@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TheKaleCartelWebApi.Controllers.Parameters;
 using TheKaleCartelWebApi.DTO;
+using TheKaleCartelWebApi.DTO.Profile;
 using TheKaleCartelWebApi.Models;
 using TheKaleCartelWebApi.Repositories.KaleProfileRepository;
 

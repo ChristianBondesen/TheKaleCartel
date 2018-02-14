@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TheKaleCartelWebApi.Controllers.Parameters;
 using TheKaleCartelWebApi.DTO;
+using TheKaleCartelWebApi.DTO.Beer;
 using TheKaleCartelWebApi.Models;
 using TheKaleCartelWebApi.Repositories.KaleBeerRepository;
 
@@ -39,31 +40,29 @@ namespace TheKaleCartelWebApi.Controllers
         }
 
         [HttpGet("name/{name}")]
-        public KaleBeerDto GetBeerByName(string name)
+        public KaleBeerDetailsDto GetBeerByName(string name)
         {
           var beer = _repo.Get(b => b.Name == name);
-          var orderedBeer = _mapper.Map<KaleBeerDto>(beer);
+          var orderedBeer = _mapper.Map<KaleBeerDetailsDto>(beer);
           return orderedBeer;
         }
 
         [HttpGet("id/{id}")]
-        public KaleBeerDto GetBeerById(int id)
+        public KaleBeerDetailsDto GetBeerById(int id)
         {
           var beer = _repo.Get(b => b.KaleBeerId == id);
-          var orderedBeer = _mapper.Map<KaleBeerDto>(beer);
+          var orderedBeer = _mapper.Map<KaleBeerDetailsDto>(beer);
           return orderedBeer;
         }
 
 
-    [HttpPost]
-        public KaleBeerDto AddNewKaleBeer([FromBody] KaleBeerDto kalebeer)
+        [HttpPost]
+        public KaleBeerDetailsDto AddNewKaleBeer([FromBody] KaleBeerDetailsDto kalebeer)
         {
             var beer = _mapper.Map<KaleBeer>(kalebeer);
             _repo.Add(beer);
 
             return kalebeer;
         }
-
-
     }
 }

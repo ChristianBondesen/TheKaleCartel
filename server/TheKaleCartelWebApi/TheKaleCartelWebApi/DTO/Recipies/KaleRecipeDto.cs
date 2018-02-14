@@ -1,8 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using TheKaleCartelWebApi.Models;
 
-namespace TheKaleCartelWebApi.DTO
+namespace TheKaleCartelWebApi.DTO.Recipies
 {
     public class KaleRecipeDto
     {
