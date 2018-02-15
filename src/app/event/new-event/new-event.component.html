@@ -21,16 +21,27 @@
 
 
     <h2>BAJER</h2>
+    <button (click)="addBeer()">Tilføj bajer</button>
+
     <div formArrayName="kaleBeers">
       <div *ngFor="let kaleBeer of eventForm.get('kaleBeers')['controls'] ; let i=index">
         <div>
           <span>Beer {{i+1}}</span>
+          <button *ngIf="eventForm.get('kaleBeers')['controls'].length>1" (click)="removeBeer(i)">Fjern bajer</button>
         </div>
 
         <div [formGroupName]="i">
           <div>
             <label>name</label>
             <input type="text" formControlName="name">
+            <span *ngIf="(eventForm.get('kaleBeers')['controls'][i].controls.name.touched || eventForm.get('kaleBeers')['controls'][i].controls.name.dirty) && eventForm.get('kaleBeers')['controls'][i].controls.name.errors">
+              <span *ngIf="eventForm.get('kaleBeers')['controls'][i].controls.name.errors.required ">
+                Hey mand. Husk lige at skrive et navn for din bajer
+              </span>
+            <span *ngIf="eventForm.get('kaleBeers')['controls'][i].controls.name.errors.minlength ">
+                Hey mand. Husk lige at navnet for din bajer skal være minst tre tegn mkay
+              </span>
+            </span>
             <!-- Vis validation her -->
           </div>
           <div>
@@ -48,11 +59,12 @@
     </div>
 
     <h2>OPSKRIFTER</h2>
-
+    <button (click)="addRecipe()">Tilføj opskrift</button>
     <div formArrayName="kaleRecipes">
       <div *ngFor="let kaleRecipe of eventForm.get('kaleRecipes')['controls'] ; let i=index">
         <div>
           <span>Recipe {{i+1}}</span>
+          <button *ngIf="eventForm.get('kaleRecipes')['controls'].length>1" (click)="removeRecipe(i)">Fjern opskrift</button>
         </div>
 
         <div [formGroupName]="i">
@@ -60,10 +72,6 @@
             <label>name</label>
             <input type="text" formControlName="name">
             <!-- Vis validation her -->
-          </div>
-          <div>
-            <label>ka</label>
-            <input type="number" formControlName="ka">
           </div>
           <div>
             <label>coursOfAction</label>

@@ -3,6 +3,7 @@ import {
   FormGroup,
   FormControl,
   FormBuilder,
+  FormArray,
   Validators
 } from '@angular/forms';
 import { CaleEvent } from '../caleEvent';
@@ -20,67 +21,78 @@ export class NewEventComponent implements OnInit {
 
   ngOnInit(): void {
     this.eventForm = this.fb.group({
-      kaleProfileName: ['', [Validators.required, Validators.minLength(3)]],
-      eventDate: '',
-      name: '',
-      kaleBeers: this.fb.array([
-        this.fb.group({
-          name: 'name1',
-          // Hvordan får jeg kaleProfileId ind her??
-          description: '',
-          volPercentage: ''
-        }),
-        this.fb.group({
-          name: 'name2',
-          // Hvordan får jeg kaleProfileId ind her??
-          description: '',
-          volPercentage: ''
-        }),
-        this.fb.group({
-          name: 'name3',
-          // Hvordan får jeg kaleProfileId ind her??
-          description: '',
-          volPercentage: ''
-        }),
-        this.fb.group({
-          name: 'name4',
-          // Hvordan får jeg kaleProfileId ind her??
-          description: '',
-          volPercentage: ''
-        })
-      ]),
-      kaleRecipes: this.fb.array([
-        this.fb.group({
-          name: '',
-          ka: 0,
-          coursOfAction: ''
-        }),
-        this.fb.group({
-          name: '',
-          ka: 0,
-          coursOfAction: 'derp'
-        }),
-        this.fb.group({
-          name: '',
-          ka: 0,
-          coursOfAction: ''
-        }),
-        this.fb.group({
-          name: '',
-          ka: 0,
-          coursOfAction: ''
-        })
-      ])
+      // selectionbox
+      kaleProfileName: [
+        '',
+        [Validators.required, Validators.minLength(1), Validators.maxLength(20)]
+      ],
+      eventDate: ['', [Validators.required]],
+      name: [
+        '',
+        [Validators.required, Validators.minLength(5), Validators.maxLength(20)]
+      ],
+      kaleBeers: this.fb.array([this.initBeers()]),
+      kaleRecipes: this.fb.array([this.initRecipes()])
     });
-    // this.eventForm = new FormGroup({
-    //   hostName: new FormControl(),
-    //   beerName1: new FormControl(),
-    //   beerName2: new FormControl(),
-    //   beerName3: new FormControl(),
-    //   beerName4: new FormControl()
-    // });
   }
   save(): void {}
+
+  initRecipes() {
+    return this.fb.group({
+      name: [
+        '',
+        [Validators.required, Validators.minLength(5), Validators.maxLength(50)]
+      ],
+      coursOfAction: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(1000)
+        ]
+      ]
+    });
+  }
+
+  addRecipe(): void {
+    const control = <FormArray>this.eventForm.controls['kaleRecipes'];
+    control.push(this.initRecipes());
+  }
+
+  removeRecipe(i: number): void {
+    const control = <FormArray>this.eventForm.controls['kaleRecipes'];
+    control.removeAt(i);
+  }
+
+  initBeers() {
+    return this.fb.group({
+      name: [
+        '',
+        [Validators.required, Validators.minLength(3), Validators.maxLength(50)]
+      ],
+      // Hvordan får jeg kaleProfileId ind her??
+      description: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(200)
+        ]
+      ],
+      // skal være tal
+      volPercentage: ['', [Validators.required]]
+    });
+  }
+
+  addBeer(): void {
+    const control = <FormArray>this.eventForm.controls['kaleBeers'];
+    control.push(this.initBeers());
+  }
+
+  removeBeer(i: number): void {
+    const control = <FormArray>this.eventForm.controls['kaleBeers'];
+    control.removeAt(i);
+  }
 }
 
 class Donger {
