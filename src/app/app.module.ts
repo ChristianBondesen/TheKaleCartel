@@ -33,7 +33,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     SharedModule
   ],
   exports: [],
-  providers: [GetBeerService, ProfileGetService, TotalUserGetService, EventGetService],
+  providers: [
+    GetBeerService,
+    ProfileGetService,
+    TotalUserGetService,
+    EventGetService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

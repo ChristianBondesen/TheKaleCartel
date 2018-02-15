@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 export abstract class BackendGetService<T> {
   public abstract url: string;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   public GetAll(): Observable<T[]> {
     return this.http.get<T[]>(this.url);
@@ -13,5 +13,8 @@ export abstract class BackendGetService<T> {
   }
   public GetByName(name: string): Observable<T> {
     return this.http.get<T>(this.url + name);
+  }
+  public PostNew(toPost: T): Observable<T> {
+    return this.http.post<T>(this.url, toPost);
   }
 }
