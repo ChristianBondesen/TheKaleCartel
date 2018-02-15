@@ -11,9 +11,10 @@ using TheKaleCartelWebApi.Data;
 namespace TheKaleCartelWebApi.Migrations
 {
     [DbContext(typeof(KaleDbContext))]
-    partial class KaleDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180215092655_courseof")]
+    partial class courseof
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
