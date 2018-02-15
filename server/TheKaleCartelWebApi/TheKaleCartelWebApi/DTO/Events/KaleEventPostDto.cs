@@ -4,11 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using TheKaleCartelWebApi.DTO.Beer;
+using TheKaleCartelWebApi.DTO.Recipies;
 using TheKaleCartelWebApi.Models;
 
 namespace TheKaleCartelWebApi.DTO.Events
 {
-  public class EventPostDTO
+  public class KaleEventPostDto
   {
     public int KaleEventId { get; set; }
     [Required]
@@ -22,8 +24,8 @@ namespace TheKaleCartelWebApi.DTO.Events
     [Required]
     public string Name { get; set; }
     [Required]
-    public IEnumerable<KaleBeerGetEventDTO> KaleBeers { get; set; }
+    public IEnumerable<KaleBeerPostDto> KaleBeers { get; set; }
     [Required]
-    public IEnumerable<KaleRecipeGetEventDTO> KaleRecipes { get; set; }
+    public IEnumerable<KaleRecipePostDto> KaleRecipes { get; set; }
   }
 }

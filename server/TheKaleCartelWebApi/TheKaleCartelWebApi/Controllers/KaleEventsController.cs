@@ -45,7 +45,7 @@ namespace TheKaleCartelWebApi.Controllers
     }
 
     [HttpPost]
-    public ActionResult Post([FromBody] EventPostDTO dankmemes)
+    public ActionResult Post([FromBody] KaleEventPostDto dankmemes)
     {
       if (ModelState.IsValid)
       {
