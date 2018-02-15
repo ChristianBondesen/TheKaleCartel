@@ -10,7 +10,7 @@ import { ProfileGetService } from './profile-get.service';
 })
 export class ProfilesComponent implements OnInit {
   profiles: Observable<User[]>;
-  constructor(private profileGet: ProfileGetService) {}
+  constructor(private profileGet: ProfileGetService) { }
 
   ngOnInit() {
     this.profiles = this.profileGet.GetAll();
