@@ -4,7 +4,6 @@
   </div>
 </header>
 
-
 <form class="example-form" [formGroup]="recipeForm" novalidate>
   <div>
     <!-- Name of recipe Input -->
@@ -20,7 +19,12 @@
         rating 1...5
       </mat-placeholder>
     </mat-form-field>
-
+    <div>
+      <span *ngIf="recipeForm.get('rating').hasError('range')">
+        Enter a rating between 1 and 5
+      </span>
+    </div>
+    
     <!-- Profile Input -->
     <mat-form-field>
       <mat-select formControlName="kaleProfileId">
@@ -63,3 +67,5 @@
 <button mat-button (click)="addRecipe()">click me</button>
 <p>Form value: {{ recipeForm.value | json }}</p>
 <p>Form status: {{ recipeForm.status | json }}</p>
+
+<p>Form status: {{ recipeForm.get('rating').touched | json }}</p>
