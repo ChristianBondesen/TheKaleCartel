@@ -1,12 +1,24 @@
 <form (ngsubmit)="save()" [formGroup]="eventForm">
   <fieldset>
-    <div [ngClass]="{'has-error': (eventForm.get('kaleProfileName').touched || eventForm.get('kaleProfileName').dirty)}">
-      <label for="kaleProfileNameId">Host name</label>
-      <input for="kaleProfileNameId" type="text" placeholder="Host name" formControlName="kaleProfileName">
-      <span *ngIf="(eventForm.get('kaleProfileName').touched ||
-      eventForm.get('kaleProfileName').dirty) &&
-      eventForm.get('kaleProfileName').errors">
 
+
+    <mat-form-field>
+      <mat-select placeholder="Vælg host" formControlName="kaleProfileName">
+        <mat-option *ngFor="let user of profileServce.users" [value]="user.name" (click)="setHostId(user.name)">
+          {{ user.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+
+
+    <!-- <div [ngClass]="{'has-error': (eventForm.get('kaleProfileName').touched || eventForm.get('kaleProfileName').dirty)}">
+            <label for="kaleProfileNameId">Host name</label>
+            <input for="kaleProfileNameId" type="text" placeholder="Host name" formControlName="kaleProfileName">
+            <span *ngIf="(eventForm.get('kaleProfileName').touched ||
+            eventForm.get('kaleProfileName').dirty) &&
+            eventForm.get('kaleProfileName').errors">
         <span *ngIf="eventForm.get('kaleProfileName').hasError('required')">
           Host navn påkrævet
         </span>
@@ -17,7 +29,7 @@
           Host navn er for langt
         </span>
       </span>
-    </div>
+    </div> -->
 
 
     <div>
@@ -53,6 +65,12 @@
 
 
     <h2>BAJER</h2>
+    <mat-radio-group>
+      <mat-radio-button (click)="hostBringsBeer(true)" value="1">Host tager bajer med</mat-radio-button>
+      <mat-radio-button (click)="hostBringsBeer(false)" value="2">Gæst tager bajer med</mat-radio-button>
+    </mat-radio-group>
+    <!-- <mat-checkbox (click)="hostBringsBeer(true)">Host tager bajer med</mat-checkbox>
+    <mat-checkbox (click)="hostBringsBeer(false)">Gæst tager bajer med</mat-checkbox> -->
     <button (click)="addBeer()">Tilføj bajer</button>
 
     <div formArrayName="kaleBeers">
@@ -62,7 +80,17 @@
           <button [disabled]="eventForm.get('kaleBeers')['controls'].length<2" (click)="removeBeer(i)">Fjern bajer</button>
         </div>
 
+        <div *ngIf="!hostBringsBeerField">
+            <mat-form-field>
+              <mat-select placeholder="Vælg bajer medbringsmand">
+                <mat-option *ngFor="let user of profileServce.users" [value]="user.name" (click)="setBeerBringerId(user.name, i)">
+                  {{ user.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
         <div [formGroupName]="i">
+          
           <div>
             <label>name</label>
             <input type="text" formControlName="name">
@@ -173,7 +201,7 @@
 </form>
 
 <div>
-  <button type="submit" [disabled]="!eventForm.valid">
+  <button type="submit" (click)="save()">
     Save new event
   </button>
 </div>
@@ -181,3 +209,6 @@
 <br>Touched: {{eventForm.touched}}
 <br>Valid: {{eventForm.valid}}
 <br>Value: {{eventForm.value | json }}
+
+<!-- [disabled]="!eventForm.valid" -->
+<!-- Tilføj til saveknap -->

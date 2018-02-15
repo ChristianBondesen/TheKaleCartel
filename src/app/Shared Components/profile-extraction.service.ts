@@ -8,13 +8,14 @@ export class ProfileExtractionService {
   constructor(private user: ProfileGetService) {
     this.user.GetAll().subscribe((users) => {
       this.users = users;
+      console.log(users);
     });
   }
 
   GetIdByName(name: string): number {
     const donger = name.toLocaleLowerCase();
     const profile = this.users.find(
-      (p) => p.name.toLocaleLowerCase() == donger
+      (p) => p.name.toLocaleLowerCase() === donger
     );
     if (profile) {
       return profile.kaleProfileId;
@@ -23,7 +24,7 @@ export class ProfileExtractionService {
   }
 
   GetNameById(id: number): string {
-    const profile = this.users.find((p) => p.kaleProfileId == id);
+    const profile = this.users.find((p) => p.kaleProfileId === id);
 
     if (profile) {
       return profile.name;

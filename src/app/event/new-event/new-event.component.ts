@@ -7,6 +7,8 @@ import {
   Validators
 } from '@angular/forms';
 import { CaleEvent } from '../caleEvent';
+import { ProfileExtractionService } from '../../Shared Components/profile-extraction.service';
+import { User } from '../../profiles/User';
 
 @Component({
   selector: 'app-new-event',
@@ -16,8 +18,11 @@ import { CaleEvent } from '../caleEvent';
 export class NewEventComponent implements OnInit {
   eventForm: FormGroup;
   caleEvent: CaleEvent = new CaleEvent();
+  users: User[];
+  hostBringsBeerField = true;
+  hostId: number;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, public profileServce: ProfileExtractionService) {}
 
   ngOnInit(): void {
     this.eventForm = this.fb.group({
@@ -26,6 +31,7 @@ export class NewEventComponent implements OnInit {
         '',
         [Validators.required, Validators.minLength(2), Validators.maxLength(20)]
       ],
+      kaleProfileId: 0,
       eventDate: ['', [Validators.required]],
       name: [
         '',
@@ -35,7 +41,39 @@ export class NewEventComponent implements OnInit {
       kaleRecipes: this.fb.array([this.initRecipes()])
     });
   }
-  save(): void {}
+
+  setBeerBringerId(beerBringerName: string, i: number) {
+    let beerBringerId: number;
+    beerBringerId = this.profileServce.GetIdByName(beerBringerName);
+    const control = <FormArray>this.eventForm.controls['kaleBeers'];
+    control.at(i).patchValue({
+      kaleProfileId: beerBringerId
+    });
+    // this.eventForm.get('kaleBeers').
+  }
+
+  hostBringsBeer(v: boolean) {
+    this.hostBringsBeerField = v;
+  }
+
+  setHostId(hostName: string): void {
+    this.hostId = this.profileServce.GetIdByName(this.eventForm.get('kaleProfileName').value);
+    this.eventForm.patchValue({
+      kaleProfileId: this.hostId
+    });
+  }
+  save(): void {
+    if (this.hostBringsBeerField) {
+      const control = <FormArray>this.eventForm.get('kaleBeers');
+      let x = 0;
+      while (x < control.length) {
+        control.at(x).patchValue({
+          kaleProfileId: this.hostId
+        });
+        x++;
+      }
+    }
+  }
 
   initRecipes() {
     return this.fb.group({
@@ -70,6 +108,7 @@ export class NewEventComponent implements OnInit {
         '',
         [Validators.required, Validators.minLength(3), Validators.maxLength(50)]
       ],
+      kaleProfileId: 0,
       // Hvordan får jeg kaleProfileId ind her??
       description: [
         '',
@@ -87,41 +126,11 @@ export class NewEventComponent implements OnInit {
   addBeer(): void {
     const control = <FormArray>this.eventForm.controls['kaleBeers'];
     control.push(this.initBeers());
+    console.log(this.users);
   }
 
   removeBeer(i: number): void {
     const control = <FormArray>this.eventForm.controls['kaleBeers'];
     control.removeAt(i);
-  }
-}
-
-class Donger {
-  constructor(private fb: FormBuilder) {}
-  eventForm: FormGroup;
-  func() {
-    this.eventForm = this.fb.group({
-      kaleBeers: this.fb.array([
-        this.fb.group({
-          name: ['simon', [Validators.required]],
-          donger: 'simopn'
-        }),
-        this.fb.group({
-          name: 'simon',
-          donger: 'simopn'
-        }),
-        this.fb.group({
-          name: 'simon',
-          donger: 'simopn'
-        }),
-        this.fb.group({
-          name: 'simon',
-          donger: 'simopn'
-        })
-      ])
-    });
-  }
-  func2() {
-    this.func();
-    console.log(this.eventForm.value);
   }
 }
