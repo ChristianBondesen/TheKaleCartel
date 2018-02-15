@@ -1,27 +1,108 @@
-<form class="example-form">
-  <mat-form-field class="example-full-width">
-    <textarea matInput placeholder="Host"></textarea>
-  </mat-form-field>
+<form (ngsubmit)="save()" [formGroup]="eventForm">
+  <fieldset>
+    <div [ngClass]="{'has-error': (eventForm.get('kaleProfileName').touched || eventForm.get('kaleProfileName').dirty)}">
+      <label for="kaleProfileNameId">Host name</label>
+      <input for="kaleProfileNameId" type="text" placeholder="Host name" formControlName="kaleProfileName">
+      <span *ngIf="eventForm.get('kaleProfileName').touched || eventForm.get('kaleProfileName').dirty && eventForm.get('kaleProfileName').errors">
+        <span *ngIf="eventForm.get('kaleProfileName').errors">
+          Please enter a valid host name
+        </span>
+
+      </span>
+    </div>
+    <div>
+      <label>dato</label>
+      <input type="date" formControlName="eventDate">
+    </div>
+    <div>
+      <label>navn for event</label>
+      <input type="text" formControlName="name">
+    </div>
+
+
+    <h2>BAJER</h2>
+    <div formArrayName="kaleBeers">
+      <div *ngFor="let kaleBeer of eventForm.get('kaleBeers')['controls'] ; let i=index">
+        <div>
+          <span>Beer {{i+1}}</span>
+        </div>
+
+        <div [formGroupName]="i">
+          <div>
+            <label>name</label>
+            <input type="text" formControlName="name">
+            <!-- Vis validation her -->
+          </div>
+          <div>
+            <label>description</label>
+            <input type="text" formControlName="description">
+          </div>
+          <div>
+            <label>vol procent</label>
+            <input type="number" formControlName="volPercentage">
+          </div>
+          <br>
+        </div>
+      </div>
+
+    </div>
+
+    <h2>OPSKRIFTER</h2>
+
+    <div formArrayName="kaleRecipes">
+      <div *ngFor="let kaleRecipe of eventForm.get('kaleRecipes')['controls'] ; let i=index">
+        <div>
+          <span>Recipe {{i+1}}</span>
+        </div>
+
+        <div [formGroupName]="i">
+          <div>
+            <label>name</label>
+            <input type="text" formControlName="name">
+            <!-- Vis validation her -->
+          </div>
+          <div>
+            <label>ka</label>
+            <input type="number" formControlName="ka">
+          </div>
+          <div>
+            <label>coursOfAction</label>
+            <input type="text" formControlName="coursOfAction">
+          </div>
+          <br>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- <div>
+      <label for="beerNameId1">Beer one name</label>
+      <input for="beerNameId1" type="text" placeholder="Beer one name" formControlName="beerName1">
+    </div>
+
+    <div>
+      <label for="beerNameId2">Beer two name</label>
+      <input for="beerNameId2" type="text" placeholder="Beer two name" formControlName="beerName2">
+    </div>
+
+    <div>
+      <label for="beerNameId3">Beer three name</label>
+      <input for="beerNameId3" type="text" placeholder="Beer three name" formControlName="beerName3">
+    </div>
+
+    <div>
+      <label for="beerNameId4">Beer four name</label>
+      <input for="beerNameId4" type="text" placeholder="Beer four name" formControlName="beerName4">
+    </div> -->
+  </fieldset>
 </form>
 
-<form class="example-form">
-  <mat-form-field class="example-full-width">
-    <textarea matInput placeholder="Beer #1" value="Beer name"></textarea>
-    <textarea matInput placeholder="Vol" value="Beer vol"></textarea>
-  </mat-form-field>
-
-  <mat-form-field class="example-full-width">
-    <textarea matInput placeholder="Beer #2"></textarea>
-  </mat-form-field>
-
-  <mat-form-field class="example-full-width">
-    <textarea matInput placeholder="Beer #3"></textarea>
-  </mat-form-field>
-
-  <mat-form-field class="example-full-width">
-    <textarea matInput placeholder="Beer #4"></textarea>
-  </mat-form-field>
-</form>
-<button>
-  Save new event
-</button>
+<div>
+  <button type="submit" [disabled]="!eventForm.valid">
+    Save new event
+  </button>
+</div>
+<br>Dirty: {{eventForm.dirty}}
+<br>Touched: {{eventForm.touched}}
+<br>Valid: {{eventForm.valid}}
+<br>Value: {{eventForm.value | json }}

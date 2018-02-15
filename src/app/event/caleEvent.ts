@@ -1,8 +1,10 @@
-import { Beer } from '../beer/Beer';
-import { User } from '../profiles/User';
+import { Beer } from '../Shared Components/beer/Beer';
+import { Recipe } from '../Shared Components/recipe/Recipe';
 
 export class CaleEvent {
-  host: string;
+  kaleProfileName: string; // navn på host
+  name: string; // navn på event
+  eventDate: Date;
   beers: Beer[];
-  user: User;
+  recipe: Recipe[];
 }
