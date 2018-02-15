@@ -25,7 +25,7 @@ export class RecipeCreateComponent implements OnInit {
   createForm() {
     this.recipeForm = this.fb.group({
       name: ['', Validators.required],
-      rating: ['', Validators.required],
+      rating: ['', [Validators.required]],
       creationDate: [null, Validators.required],
       courseOfAction: ['', Validators.required],
       pictureUrl: ['', Validators.required],
