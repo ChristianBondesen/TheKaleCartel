@@ -13305,12 +13305,15 @@
   },
   "project": {
     "version": "1.0.0",
+    "restoreSettings": {
+      "hideWarningsAndErrors": true
+    },
     "restore": {
-      "projectUniqueName": "c:\\Users\\Udvikler\\Desktop\\simon\\CaleBois\\server\\TheKaleCartelWebApi\\TheKaleCartelWebApi\\TheKaleCartelWebApi.csproj",
+      "projectUniqueName": "C:\\Users\\Udvikler\\Desktop\\simon\\CaleBois\\server\\TheKaleCartelWebApi\\TheKaleCartelWebApi\\TheKaleCartelWebApi.csproj",
       "projectName": "TheKaleCartelWebApi",
-      "projectPath": "c:\\Users\\Udvikler\\Desktop\\simon\\CaleBois\\server\\TheKaleCartelWebApi\\TheKaleCartelWebApi\\TheKaleCartelWebApi.csproj",
+      "projectPath": "C:\\Users\\Udvikler\\Desktop\\simon\\CaleBois\\server\\TheKaleCartelWebApi\\TheKaleCartelWebApi\\TheKaleCartelWebApi.csproj",
       "packagesPath": "C:\\Users\\Udvikler\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Udvikler\\Desktop\\simon\\CaleBois\\server\\TheKaleCartelWebApi\\TheKaleCartelWebApi\\obj\\",
+      "outputPath": "C:\\Users\\Udvikler\\Desktop\\simon\\CaleBois\\server\\TheKaleCartelWebApi\\TheKaleCartelWebApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
