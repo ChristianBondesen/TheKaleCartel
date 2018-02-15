@@ -21,6 +21,7 @@ namespace TheKaleCartelWebApi.DTO.Recipies
 
       public DateTime CreationDate { get; set; }
 
+      [Required]
       public int KaleProfileId { get; set; }
   }
 }

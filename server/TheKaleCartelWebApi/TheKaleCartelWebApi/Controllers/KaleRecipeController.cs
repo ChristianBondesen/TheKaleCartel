@@ -56,7 +56,7 @@ namespace TheKaleCartelWebApi.Controllers
         if (ModelState.IsValid)
         {
           var newRecipe = _mapper.Map<KaleRecipe>(recipe);
-
+          newRecipe.CreationDate = DateTime.Now;
           _repo.Add(newRecipe);
 
           return Ok(recipe);
