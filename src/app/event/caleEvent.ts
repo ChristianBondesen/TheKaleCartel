@@ -3,8 +3,9 @@ import { Recipe } from '../Shared Components/recipe/Recipe';
 
 export class CaleEvent {
   kaleProfileName: string; // navn på host
-  name: string; // navn på event
+  kaleProfileId: number;
   eventDate: Date;
-  beers: Beer[];
-  recipe: Recipe[];
+  name: string; // navn på event
+  kaleBeers: Beer[];
+  kaleRecipes: Recipe[];
 }

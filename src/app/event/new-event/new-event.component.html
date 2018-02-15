@@ -65,7 +65,10 @@
 
 
     <h2>BAJER</h2>
-    <mat-radio-group>
+    <h5 *ngIf="!hostId">
+      Vælg host
+    </h5>
+    <mat-radio-group *ngIf="hostId">
       <mat-radio-button (click)="hostBringsBeer(true)" value="1">Host tager bajer med</mat-radio-button>
       <mat-radio-button (click)="hostBringsBeer(false)" value="2">Gæst tager bajer med</mat-radio-button>
     </mat-radio-group>
@@ -81,16 +84,16 @@
         </div>
 
         <div *ngIf="!hostBringsBeerField">
-            <mat-form-field>
-              <mat-select placeholder="Vælg bajer medbringsmand">
-                <mat-option *ngFor="let user of profileServce.users" [value]="user.name" (click)="setBeerBringerId(user.name, i)">
-                  {{ user.name }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
+          <mat-form-field>
+            <mat-select placeholder="Bajer ejer">
+              <mat-option *ngFor="let user of profileServce.users" [value]="user.name" (click)="setBeerBringerId(user.name, i)">
+                {{ user.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
         <div [formGroupName]="i">
-          
+
           <div>
             <label>name</label>
             <input type="text" formControlName="name">
@@ -155,6 +158,15 @@
           <span>Recipe {{i+1}}</span>
           <button [disabled]="eventForm.get('kaleRecipes')['controls'].length<2" (click)="removeRecipe(i)">Fjern opskrift</button>
         </div>
+        <div >
+            <mat-form-field>
+              <mat-select placeholder="Opskrift ejer">
+                <mat-option *ngFor="let user of profileServce.users" [value]="user.name" (click)="setRecipeBringerId(user.name, i)">
+                  {{ user.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
 
         <div [formGroupName]="i">
           <div>
@@ -201,7 +213,8 @@
 </form>
 
 <div>
-  <button type="submit" (click)="save()">
+  <button type="submit" (click)="save()"
+  [disabled]="!eventForm.valid">
     Save new event
   </button>
 </div>

@@ -9,6 +9,7 @@ import {
 import { CaleEvent } from '../caleEvent';
 import { ProfileExtractionService } from '../../Shared Components/profile-extraction.service';
 import { User } from '../../profiles/User';
+import { EventPostService } from './event-post.service';
 
 @Component({
   selector: 'app-new-event',
@@ -22,7 +23,7 @@ export class NewEventComponent implements OnInit {
   hostBringsBeerField = true;
   hostId: number;
 
-  constructor(private fb: FormBuilder, public profileServce: ProfileExtractionService) {}
+  constructor(private fb: FormBuilder, public profileServce: ProfileExtractionService, private postService: EventPostService) {}
 
   ngOnInit(): void {
     this.eventForm = this.fb.group({
@@ -49,10 +50,44 @@ export class NewEventComponent implements OnInit {
     control.at(i).patchValue({
       kaleProfileId: beerBringerId
     });
-    // this.eventForm.get('kaleBeers').
+  }
+
+  setRecipeBringerId(recipeBringerName: string, i: number) {
+    let beerBringerId: number;
+    beerBringerId = this.profileServce.GetIdByName(recipeBringerName);
+    const control = <FormArray>this.eventForm.controls['kaleRecipes'];
+    control.at(i).patchValue({
+      kaleProfileId: beerBringerId
+    });
   }
 
   hostBringsBeer(v: boolean) {
+    if (v) {
+      // if (this.hostBringsBeerField) {
+        const control = <FormArray>this.eventForm.get('kaleBeers');
+        let x = 0;
+        while (x < control.length) {
+          control.at(x).patchValue({
+            kaleProfileId: this.hostId
+          });
+          x++;
+        }
+      // }
+    }
+
+    if (!v) {
+      // if (this.hostBringsBeerField) {
+        const control = <FormArray>this.eventForm.get('kaleBeers');
+        let x = 0;
+        while (x < control.length) {
+          control.at(x).patchValue({
+            kaleProfileId: -1
+          });
+          x++;
+        }
+      // }
+    }
+
     this.hostBringsBeerField = v;
   }
 
@@ -63,16 +98,18 @@ export class NewEventComponent implements OnInit {
     });
   }
   save(): void {
-    if (this.hostBringsBeerField) {
-      const control = <FormArray>this.eventForm.get('kaleBeers');
-      let x = 0;
-      while (x < control.length) {
-        control.at(x).patchValue({
-          kaleProfileId: this.hostId
-        });
-        x++;
-      }
-    }
+
+    this.postService.PostNew(this.eventForm.value).subscribe();
+    // if (this.hostBringsBeerField) {
+    //   const control = <FormArray>this.eventForm.get('kaleBeers');
+    //   let x = 0;
+    //   while (x < control.length) {
+    //     control.at(x).patchValue({
+    //       kaleProfileId: this.hostId
+    //     });
+    //     x++;
+    //   }
+    // }
   }
 
   initRecipes() {
@@ -81,6 +118,7 @@ export class NewEventComponent implements OnInit {
         '',
         [Validators.required, Validators.minLength(5), Validators.maxLength(50)]
       ],
+      kaleProfileId: [-1, [ Validators.required, Validators.min(1)]],
       coursOfAction: [
         '',
         [
@@ -108,7 +146,7 @@ export class NewEventComponent implements OnInit {
         '',
         [Validators.required, Validators.minLength(3), Validators.maxLength(50)]
       ],
-      kaleProfileId: 0,
+      kaleProfileId: [-1, [Validators.required, Validators.min(1)]],
       // Hvordan får jeg kaleProfileId ind her??
       description: [
         '',
