@@ -24,7 +24,7 @@ export class NewEventComponent implements OnInit {
       // selectionbox
       kaleProfileName: [
         '',
-        [Validators.required, Validators.minLength(1), Validators.maxLength(20)]
+        [Validators.required, Validators.minLength(2), Validators.maxLength(20)]
       ],
       eventDate: ['', [Validators.required]],
       name: [
@@ -80,7 +80,7 @@ export class NewEventComponent implements OnInit {
         ]
       ],
       // skal være tal
-      volPercentage: ['', [Validators.required]]
+      volPercentage: ['', [Validators.required, Validators.min(1), Validators.max(99)]]
     });
   }
 

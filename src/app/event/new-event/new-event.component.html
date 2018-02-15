@@ -3,20 +3,52 @@
     <div [ngClass]="{'has-error': (eventForm.get('kaleProfileName').touched || eventForm.get('kaleProfileName').dirty)}">
       <label for="kaleProfileNameId">Host name</label>
       <input for="kaleProfileNameId" type="text" placeholder="Host name" formControlName="kaleProfileName">
-      <span *ngIf="eventForm.get('kaleProfileName').touched || eventForm.get('kaleProfileName').dirty && eventForm.get('kaleProfileName').errors">
-        <span *ngIf="eventForm.get('kaleProfileName').errors">
-          Please enter a valid host name
-        </span>
+      <span *ngIf="(eventForm.get('kaleProfileName').touched ||
+      eventForm.get('kaleProfileName').dirty) &&
+      eventForm.get('kaleProfileName').errors">
 
+        <span *ngIf="eventForm.get('kaleProfileName').hasError('required')">
+          Host navn påkrævet
+        </span>
+        <span *ngIf="eventForm.get('kaleProfileName').hasError('minlength')">
+          Host navn er ikke langt nok
+        </span>
+        <span *ngIf="eventForm.get('kaleProfileName').hasError('maxlength')">
+          Host navn er for langt
+        </span>
       </span>
     </div>
+
+
     <div>
       <label>dato</label>
       <input type="date" formControlName="eventDate">
+      <span *ngIf="(eventForm.get('eventDate').touched ||
+      eventForm.get('eventDate').dirty) &&
+      eventForm.get('eventDate').errors">
+        <span *ngIf="eventForm.get('eventDate').hasError('required')">
+          Dato er påkrævet
+        </span>
+      </span>
     </div>
+
     <div>
       <label>navn for event</label>
       <input type="text" formControlName="name">
+      <span *ngIf="(eventForm.get('name').touched ||
+      eventForm.get('name').dirty) &&
+      eventForm.get('name').errors">
+        <span *ngIf="eventForm.get('name').hasError('required')">
+          Event navn er påkrævet
+        </span>
+        <span *ngIf="eventForm.get('name').hasError('minlength')">
+          Event navn er ikke langt nok
+        </span>
+        <span *ngIf="eventForm.get('name').hasError('maxlength')">
+          Event navn er for langt
+        </span>
+
+      </span>
     </div>
 
 
@@ -27,30 +59,59 @@
       <div *ngFor="let kaleBeer of eventForm.get('kaleBeers')['controls'] ; let i=index">
         <div>
           <span>Beer {{i+1}}</span>
-          <button *ngIf="eventForm.get('kaleBeers')['controls'].length>1" (click)="removeBeer(i)">Fjern bajer</button>
+          <button [disabled]="eventForm.get('kaleBeers')['controls'].length<2" (click)="removeBeer(i)">Fjern bajer</button>
         </div>
 
         <div [formGroupName]="i">
           <div>
             <label>name</label>
             <input type="text" formControlName="name">
-            <span *ngIf="(eventForm.get('kaleBeers')['controls'][i].controls.name.touched || eventForm.get('kaleBeers')['controls'][i].controls.name.dirty) && eventForm.get('kaleBeers')['controls'][i].controls.name.errors">
+            <span *ngIf="(eventForm.get('kaleBeers')['controls'][i].controls.name.touched || 
+                          eventForm.get('kaleBeers')['controls'][i].controls.name.dirty) &&
+                          eventForm.get('kaleBeers')['controls'][i].controls.name.errors">
               <span *ngIf="eventForm.get('kaleBeers')['controls'][i].controls.name.errors.required ">
                 Hey mand. Husk lige at skrive et navn for din bajer
               </span>
-            <span *ngIf="eventForm.get('kaleBeers')['controls'][i].controls.name.errors.minlength ">
+              <span *ngIf="eventForm.get('kaleBeers')['controls'][i].controls.name.errors.minlength ">
                 Hey mand. Husk lige at navnet for din bajer skal være minst tre tegn mkay
               </span>
             </span>
-            <!-- Vis validation her -->
           </div>
+
           <div>
             <label>description</label>
             <input type="text" formControlName="description">
+            <span *ngIf="(eventForm.get('kaleBeers')['controls'][i].controls.description.touched || 
+            eventForm.get('kaleBeers')['controls'][i].controls.description.dirty) &&
+            eventForm.get('kaleBeers')['controls'][i].controls.description.errors">
+              <span *ngIf="eventForm.get('kaleBeers')['controls'][i].controls.description.errors.required ">
+                Beskrivelse af øl påkrevet
+              </span>
+              <span *ngIf="eventForm.get('kaleBeers')['controls'][i].controls.description.errors.minlength ">
+                Beskrivelse af øl er ikke lang nok
+              </span>
+              <span *ngIf="eventForm.get('kaleBeers')['controls'][i].controls.description.errors.maxlength ">
+                Beskrivelse af øl er for lang
+              </span>
+            </span>
           </div>
+
           <div>
             <label>vol procent</label>
             <input type="number" formControlName="volPercentage">
+            <span *ngIf="(eventForm.get('kaleBeers')['controls'][i].controls.volPercentage.touched || 
+            eventForm.get('kaleBeers')['controls'][i].controls.volPercentage.dirty) &&
+            eventForm.get('kaleBeers')['controls'][i].controls.volPercentage.errors">
+              <span *ngIf="eventForm.get('kaleBeers')['controls'][i].controls.volPercentage.errors.required ">
+                Alkohol procent er påkrævet
+              </span>
+              <span *ngIf="eventForm.get('kaleBeers')['controls'][i].controls.volPercentage.errors.min ">
+                Alkohol procent er alt for lav
+              </span>
+              <span *ngIf="eventForm.get('kaleBeers')['controls'][i].controls.volPercentage.errors.max ">
+                Alkohol procent er alt for høj
+              </span>
+            </span>
           </div>
           <br>
         </div>
@@ -64,18 +125,44 @@
       <div *ngFor="let kaleRecipe of eventForm.get('kaleRecipes')['controls'] ; let i=index">
         <div>
           <span>Recipe {{i+1}}</span>
-          <button *ngIf="eventForm.get('kaleRecipes')['controls'].length>1" (click)="removeRecipe(i)">Fjern opskrift</button>
+          <button [disabled]="eventForm.get('kaleRecipes')['controls'].length<2" (click)="removeRecipe(i)">Fjern opskrift</button>
         </div>
 
         <div [formGroupName]="i">
           <div>
             <label>name</label>
             <input type="text" formControlName="name">
-            <!-- Vis validation her -->
+            <span *ngIf="(eventForm.get('kaleRecipes')['controls'][i].controls.name.touched || 
+            eventForm.get('kaleRecipes')['controls'][i].controls.name.dirty) &&
+            eventForm.get('kaleRecipes')['controls'][i].controls.name.errors">
+              <span *ngIf="eventForm.get('kaleRecipes')['controls'][i].controls.name.errors.required ">
+                Opskrift navn er påkrævet
+              </span>
+              <span *ngIf="eventForm.get('kaleRecipes')['controls'][i].controls.name.errors.minlength ">
+                Opskrift navn er for kort
+              </span>
+              <span *ngIf="eventForm.get('kaleRecipes')['controls'][i].controls.name.errors.maxlength ">
+                Opskrift navn er for langt
+              </span>
+            </span>
+
           </div>
           <div>
             <label>coursOfAction</label>
             <input type="text" formControlName="coursOfAction">
+            <span *ngIf="(eventForm.get('kaleRecipes')['controls'][i].controls.coursOfAction.touched || 
+            eventForm.get('kaleRecipes')['controls'][i].controls.coursOfAction.dirty) &&
+            eventForm.get('kaleRecipes')['controls'][i].controls.coursOfAction.errors">
+              <span *ngIf="eventForm.get('kaleRecipes')['controls'][i].controls.coursOfAction.errors.required ">
+                Fremgangsmåde er påkrævet
+              </span>
+              <span *ngIf="eventForm.get('kaleRecipes')['controls'][i].controls.coursOfAction.errors.minlength ">
+                Fremgangsmåde er for kort
+              </span>
+              <span *ngIf="eventForm.get('kaleRecipes')['controls'][i].controls.coursOfAction.errors.maxlength ">
+                Fremgangsmåde er for lang
+              </span>
+            </span>
           </div>
           <br>
         </div>
