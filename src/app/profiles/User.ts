@@ -6,7 +6,7 @@ export class User {
   name: string;
   kaleProfileId: number;
   totalKaleLevel: number;
-  pictureUrl: string;
+  pictureUrl?: string;
   nickname: string;
 }
 

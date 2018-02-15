@@ -60,3 +60,8 @@ button {
 button:hover {
   cursor: pointer;
 }
+
+.mat-textarea {
+  background-color: whitesmoke;
+  border-radius: 5px;
+}

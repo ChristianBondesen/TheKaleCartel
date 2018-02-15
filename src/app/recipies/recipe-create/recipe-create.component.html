@@ -24,7 +24,7 @@
     <!-- Profile Input -->
     <mat-form-field>
       <mat-select formControlName="kaleProfileId">
-        <mat-option *ngFor="let profile of selectProfile; let i=index;" [value]="i + 1">{{profile}} </mat-option>
+        <mat-option *ngFor="let profile of selectProfile;" [value]="profile">{{profile}} </mat-option>
       </mat-select>
       <mat-placeholder>
         <mat-icon>accessible</mat-icon>
@@ -51,17 +51,15 @@
 
     <br>
     <br>
-    <br> HOLY FUCK HVOR ER DEN GRIM
-    <!-- Course of Action Input -->
     <div>
       <label>
         Course of action:
-        <textarea formControlName="courseOfAction"></textarea>
+        <textarea class="mat-textarea" rows="10" matInput formControlName="courseOfAction"></textarea>
       </label>
     </div>
 
   </div>
 </form>
-
+<button mat-button (click)="addRecipe()">click me</button>
 <p>Form value: {{ recipeForm.value | json }}</p>
 <p>Form status: {{ recipeForm.status | json }}</p>

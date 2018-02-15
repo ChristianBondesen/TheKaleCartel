@@ -44,6 +44,7 @@ import { RecipeService } from './recipies/recipe.service';
 import { BeerComponent } from './Shared Components/beer/beer.component';
 import { RecipeComponent } from './Shared Components/recipe/recipe.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ProfileExtractionService } from './Shared Components/profile-extraction.service';
 
 /**
  * NgModule that includes all Material modules.
@@ -139,6 +140,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     PortalModule,
     ReactiveFormsModule,
     FormsModule
+  ], providers: [
+    ProfileExtractionService
   ]
 })
-export class SharedModule {}
+export class SharedModule { }

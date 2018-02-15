@@ -1,6 +1,6 @@
 export interface Recipe {
   name: string;
-  rating: string;
+  rating: number;
   creationDate: Date;
   courseOfAction: string;
   kaleProfileId: number;
