@@ -24,7 +24,7 @@
     <!-- Profile Input -->
     <mat-form-field>
       <mat-select formControlName="kaleProfileId">
-        <mat-option *ngFor="let profile of selectProfile; let i=index;" [value]="i + 1">{{profile}} </mat-option>
+        <mat-option *ngFor="let profile of selectProfile;" [value]="profile">{{profile}} </mat-option>
       </mat-select>
       <mat-placeholder>
         <mat-icon>accessible</mat-icon>
@@ -60,6 +60,6 @@
 
   </div>
 </form>
-
+<button mat-button (click)="addRecipe()">click me</button>
 <p>Form value: {{ recipeForm.value | json }}</p>
 <p>Form status: {{ recipeForm.status | json }}</p>
