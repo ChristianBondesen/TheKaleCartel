@@ -76,7 +76,7 @@
     <mat-divider></mat-divider>
 
     <h2>BAJER</h2>
-    
+
     <mat-error *ngIf="!hostId">
       Vælg host
     </mat-error>
@@ -91,10 +91,6 @@
 
     <div formArrayName="kaleBeers">
       <div *ngFor="let kaleBeer of eventForm.get('kaleBeers')['controls'] ; let i=index">
-        <div>
-
-        </div>
-
 
         <div [formGroupName]="i">
 
@@ -172,57 +168,58 @@
 
     <h2 mat-h2>OPSKRIFTER</h2>
     <button mat-raised-button (click)="addRecipe()">Tilføj opskrift</button>
+
     <div formArrayName="kaleRecipes">
       <div *ngFor="let kaleRecipe of eventForm.get('kaleRecipes')['controls'] ; let i=index">
 
-        <div [formGroupName]="i"></div>
-        <mat-form-field>
-          <mat-select placeholder="Opskrift ejer">
-            <mat-option *ngFor="let user of profileServce.users" [value]="user.name" 
-            (click)="setRecipeBringerId(user.name, i)">
-              {{ user.name }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+        <div [formGroupName]="i">
+          <mat-form-field>
+            <mat-select placeholder="Opskrift ejer">
+              <mat-option *ngFor="let user of profileServce.users" [value]="user.name" (click)="setRecipeBringerId(user.name, i)">
+                {{ user.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
 
-        <mat-form-field class="example-full-width">
+          <mat-form-field class="example-full-width">
 
-          <input matInput placeholder="Opskriftnavn" type="text" formControlName="name">
-          <span *ngIf="(eventForm.get('kaleRecipes')['controls'][i].controls.name.touched || 
+            <input matInput placeholder="Opskriftnavn" type="text" formControlName="name">
+            <span *ngIf="(eventForm.get('kaleRecipes')['controls'][i].controls.name.touched || 
             eventForm.get('kaleRecipes')['controls'][i].controls.name.dirty) &&
             eventForm.get('kaleRecipes')['controls'][i].controls.name.errors">
-            <mat-error *ngIf="eventForm.get('kaleRecipes')['controls'][i].controls.name.errors.required ">
-              Opskrift navn er påkrævet
-            </mat-error>
-            <mat-error *ngIf="eventForm.get('kaleRecipes')['controls'][i].controls.name.errors.minlength ">
-              Opskrift navn er for kort
-            </mat-error>
-            <mat-error *ngIf="eventForm.get('kaleRecipes')['controls'][i].controls.name.errors.maxlength ">
-              Opskrift navn er for langt
-            </mat-error>
-          </span>
-        </mat-form-field>
+              <mat-error *ngIf="eventForm.get('kaleRecipes')['controls'][i].controls.name.errors.required ">
+                Opskrift navn er påkrævet
+              </mat-error>
+              <mat-error *ngIf="eventForm.get('kaleRecipes')['controls'][i].controls.name.errors.minlength ">
+                Opskrift navn er for kort
+              </mat-error>
+              <mat-error *ngIf="eventForm.get('kaleRecipes')['controls'][i].controls.name.errors.maxlength ">
+                Opskrift navn er for langt
+              </mat-error>
+            </span>
+          </mat-form-field>
 
 
-        <mat-form-field class="example-full-width">
-          <textarea matInput placeholder="Fremgangsmåde" type="text" formControlName="coursOfAction"> </textarea>
-          <span *ngIf="(eventForm.get('kaleRecipes')['controls'][i].controls.coursOfAction.touched || 
+          <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Fremgangsmåde" type="text" formControlName="coursOfAction"> </textarea>
+            <span *ngIf="(eventForm.get('kaleRecipes')['controls'][i].controls.coursOfAction.touched || 
             eventForm.get('kaleRecipes')['controls'][i].controls.coursOfAction.dirty) &&
             eventForm.get('kaleRecipes')['controls'][i].controls.coursOfAction.errors">
-            <mat-error *ngIf="eventForm.get('kaleRecipes')['controls'][i].controls.coursOfAction.errors.required ">
-              Fremgangsmåde er påkrævet
-            </mat-error>
-            <mat-error *ngIf="eventForm.get('kaleRecipes')['controls'][i].controls.coursOfAction.errors.minlength ">
-              Fremgangsmåde er for kort
-            </mat-error>
-            <mat-error *ngIf="eventForm.get('kaleRecipes')['controls'][i].controls.coursOfAction.errors.maxlength ">
-              Fremgangsmåde er for lang
-            </mat-error>
-          </span>
-        </mat-form-field>
-        <button mat-raised-button [disabled]="eventForm.get('kaleRecipes')['controls'].length<2" (click)="removeRecipe(i)">Fjern opskrift</button>
+              <mat-error *ngIf="eventForm.get('kaleRecipes')['controls'][i].controls.coursOfAction.errors.required ">
+                Fremgangsmåde er påkrævet
+              </mat-error>
+              <mat-error *ngIf="eventForm.get('kaleRecipes')['controls'][i].controls.coursOfAction.errors.minlength ">
+                Fremgangsmåde er for kort
+              </mat-error>
+              <mat-error *ngIf="eventForm.get('kaleRecipes')['controls'][i].controls.coursOfAction.errors.maxlength ">
+                Fremgangsmåde er for lang
+              </mat-error>
+            </span>
+          </mat-form-field>
+          <button mat-raised-button [disabled]="eventForm.get('kaleRecipes')['controls'].length<2" (click)="removeRecipe(i)">Fjern opskrift</button>
 
-        <br>
+          <br>
+        </div>
       </div>
     </div>
 
