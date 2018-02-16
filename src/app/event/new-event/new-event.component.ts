@@ -4,12 +4,15 @@ import {
   FormControl,
   FormBuilder,
   FormArray,
-  Validators
+  Validators,
+  FormGroupDirective,
+  NgForm
 } from '@angular/forms';
 import { CaleEvent } from '../caleEvent';
 import { ProfileExtractionService } from '../../Shared Components/profile-extraction.service';
 import { User } from '../../profiles/User';
 import { EventPostService } from './event-post.service';
+import { ErrorStateMatcher } from '@angular/material';
 
 @Component({
   selector: 'app-new-event',
@@ -22,6 +25,7 @@ export class NewEventComponent implements OnInit {
   users: User[];
   hostBringsBeerField = true;
   hostId: number;
+  matcher = new MyErrorStateMatcher(); // slet evt
 
   constructor(private fb: FormBuilder, public profileServce: ProfileExtractionService, private postService: EventPostService) {}
 
@@ -164,11 +168,18 @@ export class NewEventComponent implements OnInit {
   addBeer(): void {
     const control = <FormArray>this.eventForm.controls['kaleBeers'];
     control.push(this.initBeers());
-    console.log(this.users);
   }
 
   removeBeer(i: number): void {
     const control = <FormArray>this.eventForm.controls['kaleBeers'];
     control.removeAt(i);
+  }
+}
+
+/** Error when invalid control is dirty, touched, or submitted. */
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.touched));
   }
 }

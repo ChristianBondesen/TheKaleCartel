@@ -1,4 +1,4 @@
-<button (click)='clickNewEvent()'>
+<button mat-raised-button (click)='clickNewEvent()'>
   {{buttonNewEventShow ? 'Hide' : 'Create'}} new event
 </button>
 <app-new-event *ngIf='buttonNewEventShow'></app-new-event>

@@ -16,6 +16,7 @@ import { ProfileGetService } from './profiles/profile-get.service';
 import { TotalUserGetService } from './profiles/profile-details/total-user-get';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EventPostService } from './event/new-event/event-post.service';
+import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { EventPostService } from './event/new-event/event-post.service';
     ProfileGetService,
     TotalUserGetService,
     EventGetService,
-    EventPostService
+    EventPostService,
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher} // Ved ikke om det skal være der...
   ],
   bootstrap: [AppComponent]
 })
