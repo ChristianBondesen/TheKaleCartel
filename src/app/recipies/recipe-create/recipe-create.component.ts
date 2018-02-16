@@ -25,6 +25,16 @@ function rangeValidator(min: number, max: number) : ValidatorFn {
   } 
 }
 
+function dateValidator(from: Date, to: Date) : ValidatorFn {
+  return(c: AbstractControl): { [key: string]: boolean } | null => {
+      if ( c.value != undefined && (from < c.value && c.value > to )) {
+        console.log((c.value) + " Igood shiutes");
+        return null;
+      }
+    return null; //success
+  }
+}
+
 
 
 @Component({
@@ -35,12 +45,16 @@ function rangeValidator(min: number, max: number) : ValidatorFn {
 export class RecipeCreateComponent implements OnInit {
   public recipeForm: FormGroup;
   public selectProfile = ['Christian', 'Michael', 'Osvald', 'Kasper'];
-
   public ratingMessage: string;
 
   private validationMessages = {
     required: 'Please enter valid rating, 1 - 5'
   };
+
+  private fromDate: Date = new Date('2018, 0, 31');
+  private toDate: Date = new Date();
+  
+
 
   constructor(
     private fb: FormBuilder,
@@ -51,21 +65,21 @@ export class RecipeCreateComponent implements OnInit {
   ngOnInit() {
     this.createForm();
     this.recipeForm.get('rating').valueChanges.subscribe((data) => {});
-
-    // const ratingControl = this.recipeForm.get('rating');
-    // ratingControl.valueChanges.subscribe((value) => {
-    //   this.setMessage(ratingControl);
-    // });
   }
 
   createForm() {
+    
     this.recipeForm = this.fb.group({
       name: [
         '',
-        [Validators.required, Validators.minLength(3), Validators.maxLength(50)]
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(50)
+        ]
       ],
       rating: [''],
-      creationDate: [null, Validators.required],
+      creationDate: [null, [Validators.required, dateValidator(this.fromDate, this.toDate)]],
       courseOfAction: ['', Validators.required],
       pictureUrl: ['', Validators.required],
       kaleProfileId: [null, Validators.required]
@@ -81,11 +95,4 @@ export class RecipeCreateComponent implements OnInit {
       console.log('added recipe');
     });
   }
-
-  // setMessage(c: AbstractControl) {
-  //     this.ratingMessage = '';
-  //     if ((c.touched || c.dirty) && c.hasError {
-  //         this.ratingMessage = Object.keys(c.errors).map(key => )
-  //     }
-  //   }
 }

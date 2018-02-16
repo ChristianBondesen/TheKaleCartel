@@ -12,11 +12,11 @@ import { MatTableDataSource } from '@angular/material';
 })
 export class RecipeDetailsComponent implements OnInit {
   public recipe: Observable<Recipe>;
-  recipeName: string;
+  recipeId: number;
   constructor(private service: RecipeService, activatedRoute: ActivatedRoute) {
-    this.recipeName = activatedRoute.snapshot.paramMap.get('name');
+    this.recipeId = +activatedRoute.snapshot.paramMap.get('id');
   }
   ngOnInit() {
-    this.recipe = this.service.GetByName('name/' + this.recipeName);
+    this.recipe = this.service.GetOne(this.recipeId);
   }
 }
