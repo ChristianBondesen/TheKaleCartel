@@ -18,7 +18,7 @@
     </mat-expansion-panel-header>
     <div class="columContainer">
 
-      <div *ngFor="let beer of user.kaleBeers; let i = index;">
+      <div *ngFor="let beer of user?.kaleBeers; let i = index;">
         <div class="columDiv" *ngIf="Validate(i)">
           <app-beer [Beer]="beer"></app-beer>
         </div>
