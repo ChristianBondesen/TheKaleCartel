@@ -13,6 +13,7 @@ import { User } from '../../profiles/User';
 import { EventPostService } from './event-post.service';
 import { ErrorStateMatcher } from '@angular/material';
 import { CaleEventPost } from '../caleEventPost';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-event',
@@ -27,7 +28,9 @@ export class NewEventComponent implements OnInit {
   hostId: number;
   matcher = new MyErrorStateMatcher(); // slet evt
 
-  constructor(private fb: FormBuilder, public profileServce: ProfileExtractionService, private postService: EventPostService) { }
+  constructor(private fb: FormBuilder,
+    public profileServce: ProfileExtractionService,
+    private postService: EventPostService) { }
 
   ngOnInit(): void {
     this.eventForm = this.fb.group({
@@ -100,7 +103,7 @@ export class NewEventComponent implements OnInit {
         x++;
       }
 
-      // Gør kaleprofilename aktivt igen, så vi kan validere på den :3 
+      // Gør kaleprofilename aktivt igen, så vi kan validere på den :3
       const controlBeers = <FormArray>this.eventForm.get('kaleBeers');
       x = 0;
       while (x < controlBeers.length) {

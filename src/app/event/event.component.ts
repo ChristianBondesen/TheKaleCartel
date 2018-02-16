@@ -19,7 +19,6 @@ export class EventComponent implements OnInit {
     this.eventGet.GetAll().subscribe(d => {
       this.caleEvents = d;
     });
-  // this.caleEvents = this.eventGet.GetAll();
   }
   clickNewEvent(): void {
   this.buttonNewEventShow = !this.buttonNewEventShow;
