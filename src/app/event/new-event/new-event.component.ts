@@ -27,7 +27,7 @@ export class NewEventComponent implements OnInit {
   hostId: number;
   matcher = new MyErrorStateMatcher(); // slet evt
 
-  constructor(private fb: FormBuilder, public profileServce: ProfileExtractionService, private postService: EventPostService) {}
+  constructor(private fb: FormBuilder, public profileServce: ProfileExtractionService, private postService: EventPostService) { }
 
   ngOnInit(): void {
     this.eventForm = this.fb.group({
@@ -45,6 +45,7 @@ export class NewEventComponent implements OnInit {
       kaleBeers: this.fb.array([this.initBeers()]),
       kaleRecipes: this.fb.array([this.initRecipes()])
     });
+
   }
 
   setBeerBringerId(beerBringerName: string, i: number) {
@@ -68,27 +69,27 @@ export class NewEventComponent implements OnInit {
   hostBringsBeer(v: boolean) {
     if (v) {
       // if (this.hostBringsBeerField) {
-        const control = <FormArray>this.eventForm.get('kaleBeers');
-        let x = 0;
-        while (x < control.length) {
-          control.at(x).patchValue({
-            kaleProfileId: this.hostId
-          });
-          x++;
-        }
+      const control = <FormArray>this.eventForm.get('kaleBeers');
+      let x = 0;
+      while (x < control.length) {
+        control.at(x).patchValue({
+          kaleProfileId: this.hostId
+        });
+        x++;
+      }
       // }
     }
 
     if (!v) {
       // if (this.hostBringsBeerField) {
-        const control = <FormArray>this.eventForm.get('kaleBeers');
-        let x = 0;
-        while (x < control.length) {
-          control.at(x).patchValue({
-            kaleProfileId: -1
-          });
-          x++;
-        }
+      const control = <FormArray>this.eventForm.get('kaleBeers');
+      let x = 0;
+      while (x < control.length) {
+        control.at(x).patchValue({
+          kaleProfileId: -1
+        });
+        x++;
+      }
       // }
     }
 
@@ -102,27 +103,35 @@ export class NewEventComponent implements OnInit {
     });
   }
   save(): void {
+    // slet først kaleprofilename fra array kalericipes, fordi backenden ikke skal bruge den
+    const control = <FormArray>this.eventForm.get('kaleRecipes');
+    let x = 0;
+    while (x < control.length) {
+      control.at(x).get('kaleProfileName').disable();
+      x++;
+    }
+    // send lortet
 
-    this.postService.PostNew(this.eventForm.value).subscribe();
-    // if (this.hostBringsBeerField) {
-    //   const control = <FormArray>this.eventForm.get('kaleBeers');
-    //   let x = 0;
-    //   while (x < control.length) {
-    //     control.at(x).patchValue({
-    //       kaleProfileId: this.hostId
-    //     });
-    //     x++;
-    //   }
-    // }
+    // this.postService.PostNew(this.eventForm.value).subscribe();
+
+    // Tilføj kaleprofilename til array kalericipes, så bruger kan indtaste det igen
+
+    console.log(this.eventForm.value);
+    x = 0;
+    while (x < control.length) {
+      control.at(x).get('kaleProfileName').enable();
+      x++;
+    }
   }
 
   initRecipes() {
     return this.fb.group({
+      kaleProfileName: ['', Validators.required],
       name: [
         '',
         [Validators.required, Validators.minLength(5), Validators.maxLength(50)]
       ],
-      kaleProfileId: [-1, [ Validators.required, Validators.min(1)]],
+      kaleProfileId: [-1, [Validators.required, Validators.min(1)]],
       coursOfAction: [
         '',
         [
@@ -151,7 +160,6 @@ export class NewEventComponent implements OnInit {
         [Validators.required, Validators.minLength(3), Validators.maxLength(50)]
       ],
       kaleProfileId: [-1, [Validators.required, Validators.min(1)]],
-      // Hvordan får jeg kaleProfileId ind her??
       description: [
         '',
         [
@@ -176,7 +184,7 @@ export class NewEventComponent implements OnInit {
   }
 }
 
-/** Error when invalid control is dirty, touched, or submitted. */
+/** Error when invalid control is invalid AND touched*/
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;

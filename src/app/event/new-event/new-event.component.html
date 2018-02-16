@@ -143,7 +143,7 @@
 
         <div [formGroupName]="i">
           <mat-form-field [hideRequiredMarker]="true" >
-            <mat-select placeholder="Opskrift ejer" [errorStateMatcher]="matcher">
+            <mat-select placeholder="Opskrift ejer" formControlName="kaleProfileName" [errorStateMatcher]="matcher">
               <mat-option *ngFor="let user of profileServce.users" [value]="user.name" (click)="setRecipeBringerId(user.name, i)">
                 {{ user.name }}
               </mat-option>
@@ -196,7 +196,8 @@
 </form>
 
 <div>
-  <button mat-raised-button type="submit" (click)="save()" [disabled]="!eventForm.valid">
+  <button mat-raised-button type="submit" (click)="save()" [disabled]="eventForm.valid"> 
+    <!-- HUSK AT SÆTTE "!" VED EVENTFORM.VALID IGEN -->
     Save new event
   </button>
 </div>
