@@ -12,20 +12,9 @@ import { ActivatedRoute } from '@angular/router';
 export class BeerComponent implements OnInit {
   @Input() Beer: Beer;
 
-  constructor(private _route: ActivatedRoute,
-  private beerService: GetBeerService) {
+  constructor() {
   }
 
   ngOnInit() {
-    let id: number;
-    this._route.params.subscribe( p => {
-      id = +p['id'];
-    });
-    console.log(id);
-    this.beerService.GetOne(id).subscribe((b) => {
-      this.Beer = b;
-      console.log(b);
-    });
-    console.log(this.Beer);
   }
 }

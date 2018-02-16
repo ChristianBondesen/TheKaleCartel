@@ -29,7 +29,7 @@
       <mat-cell *matCellDef="let element">
         <button mat-button [matMenuTriggerFor]="menu">Åben bajer</button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item *ngFor="let beer of element.kaleBeers" [routerLink]="['/beer', beer.kaleBeerId]">{{beer.name}}</button>
+          <button mat-menu-item *ngFor="let beer of element.kaleBeers" [routerLink]="['/beers', beer.kaleBeerId]">{{beer.name}}</button>
         </mat-menu>
       </mat-cell>
     </ng-container>

@@ -20,8 +20,6 @@ const routes: Routes = [
     loadChildren: 'app/recipies/recipies.module#RecipiesModule'
   },
   {
-    path: 'beer/:id', component: BeerComponent},
-    {
     path: 'beers',
     loadChildren: 'app/beers/beer.module#BeerModule'
   },
