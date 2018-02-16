@@ -1,30 +1,6 @@
-<button (click)='clickNewEvent()'
- >
- {{buttonNewEventShow ? 'Hide' : 'Create'}} new event
+<button (click)='clickNewEvent()'>
+  {{buttonNewEventShow ? 'Hide' : 'Create'}} new event
 </button>
 <app-new-event *ngIf='buttonNewEventShow'></app-new-event>
-<div >Event works - List of events shows here... sometime..</div>
-<div class="table-responsive">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Hostname</th>
-        <th>Beer#1</th>
-        <th>Beer#2</th>
-        <th>Beer#3</th>
-        <th>Beer#4</th>
-        <th>Guest</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Christian</td>
-        <td>Øl</td>
-        <td>Pils</td>
-        <td>Bajer</td>
-        <td>Classic</td>
-        <td>Simon</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<div>Event works - List of events shows here... eventually..</div>
+<!-- {{(caleEvents|async)[0].name}} -->

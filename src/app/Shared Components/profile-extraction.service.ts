@@ -8,6 +8,7 @@ export class ProfileExtractionService {
   constructor(private user: ProfileGetService) {
     this.user.GetAll().subscribe((users) => {
       this.users = users;
+      console.log(users);
     });
   }
 

@@ -5,5 +5,5 @@ import { BackendGetService } from '../Shared Components/BackendGetService';
 
 @Injectable()
 export class EventGetService extends BackendGetService<CaleEvent> {
-  public url = 'https://thekalecartelwebapi.azurewebsites.net/api/events/';
+  public url = 'https://thekalecartelwebapi.azurewebsites.net/api/kaleevents/';
 }

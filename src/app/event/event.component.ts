@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./event.component.css']
 })
 export class EventComponent implements OnInit {
-  buttonNewEventShow = false;
+  buttonNewEventShow = true;
   caleEvents: Observable<CaleEvent[]>;
 
   constructor(private eventGet: EventGetService) { }
