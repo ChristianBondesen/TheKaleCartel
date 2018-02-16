@@ -5,6 +5,7 @@ import { ProfilesComponent } from './profiles/profiles.component';
 import { NotFoundComponent } from './not-found.component';
 import { ProfileDetailsComponent } from './profiles/profile-details/profile-details.component';
 import { EventComponent } from './event/event.component';
+import { BeerComponent } from './Shared Components/beer/beer.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },

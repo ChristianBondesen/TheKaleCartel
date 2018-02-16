@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Beer } from './Beer';
 import { GetBeerService } from './GetBeer.service';
 import { Observable } from 'rxjs/Observable';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-beer',
@@ -11,5 +12,9 @@ import { Observable } from 'rxjs/Observable';
 export class BeerComponent implements OnInit {
   @Input() Beer: Beer;
 
-  ngOnInit() {}
+  constructor() {
+  }
+
+  ngOnInit() {
+  }
 }

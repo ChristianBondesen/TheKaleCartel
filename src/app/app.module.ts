@@ -16,6 +16,7 @@ import { ProfileGetService } from './profiles/profile-get.service';
 import { TotalUserGetService } from './profiles/profile-details/total-user-get';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EventPostService } from './event/new-event/event-post.service';
+import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material';
 import { ProfileExtractionService } from './Shared Components/profile-extraction.service';
 
 @NgModule({
@@ -41,6 +42,7 @@ import { ProfileExtractionService } from './Shared Components/profile-extraction
     TotalUserGetService,
     EventGetService,
     EventPostService,
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
     ProfileExtractionService
   ],
   bootstrap: [AppComponent]

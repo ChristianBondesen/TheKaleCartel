@@ -4,12 +4,15 @@ import {
   FormControl,
   FormBuilder,
   FormArray,
-  Validators
+  Validators,
+  FormGroupDirective,
+  NgForm
 } from '@angular/forms';
 import { CaleEvent } from '../caleEvent';
 import { ProfileExtractionService } from '../../Shared Components/profile-extraction.service';
 import { User } from '../../profiles/User';
 import { EventPostService } from './event-post.service';
+import { ErrorStateMatcher } from '@angular/material';
 
 @Component({
   selector: 'app-new-event',
@@ -22,8 +25,9 @@ export class NewEventComponent implements OnInit {
   users: User[];
   hostBringsBeerField = true;
   hostId: number;
+  matcher = new MyErrorStateMatcher(); // slet evt
 
-  constructor(private fb: FormBuilder, public profileServce: ProfileExtractionService, private postService: EventPostService) {}
+  constructor(private fb: FormBuilder, public profileServce: ProfileExtractionService, private postService: EventPostService) { }
 
   ngOnInit(): void {
     this.eventForm = this.fb.group({
@@ -41,6 +45,7 @@ export class NewEventComponent implements OnInit {
       kaleBeers: this.fb.array([this.initBeers()]),
       kaleRecipes: this.fb.array([this.initRecipes()])
     });
+
   }
 
   setBeerBringerId(beerBringerName: string, i: number) {
@@ -64,27 +69,27 @@ export class NewEventComponent implements OnInit {
   hostBringsBeer(v: boolean) {
     if (v) {
       // if (this.hostBringsBeerField) {
-        const control = <FormArray>this.eventForm.get('kaleBeers');
-        let x = 0;
-        while (x < control.length) {
-          control.at(x).patchValue({
-            kaleProfileId: this.hostId
-          });
-          x++;
-        }
+      const control = <FormArray>this.eventForm.get('kaleBeers');
+      let x = 0;
+      while (x < control.length) {
+        control.at(x).patchValue({
+          kaleProfileId: this.hostId
+        });
+        x++;
+      }
       // }
     }
 
     if (!v) {
       // if (this.hostBringsBeerField) {
-        const control = <FormArray>this.eventForm.get('kaleBeers');
-        let x = 0;
-        while (x < control.length) {
-          control.at(x).patchValue({
-            kaleProfileId: -1
-          });
-          x++;
-        }
+      const control = <FormArray>this.eventForm.get('kaleBeers');
+      let x = 0;
+      while (x < control.length) {
+        control.at(x).patchValue({
+          kaleProfileId: -1
+        });
+        x++;
+      }
       // }
     }
 
@@ -98,27 +103,48 @@ export class NewEventComponent implements OnInit {
     });
   }
   save(): void {
+    const controlRecipes = <FormArray>this.eventForm.get('kaleRecipes');
+    const controlBeers = <FormArray>this.eventForm.get('kaleBeers');
+    // slet først kaleprofilename fra array kalericipes, fordi backenden ikke skal bruge den
+    let x = 0;
+    while (x < controlRecipes.length) {
+      controlRecipes.at(x).get('kaleProfileName').disable();
+      x++;
+    }
 
+    // slet først kaleprofilename fra array kaleBeers, fordi backenden ikke skal bruge den
+    x = 0;
+    while (x < controlBeers.length) {
+      controlBeers.at(x).get('kaleProfileName').disable();
+      x++;
+    }
+    // send lortet
     this.postService.PostNew(this.eventForm.value).subscribe();
-    // if (this.hostBringsBeerField) {
-    //   const control = <FormArray>this.eventForm.get('kaleBeers');
-    //   let x = 0;
-    //   while (x < control.length) {
-    //     control.at(x).patchValue({
-    //       kaleProfileId: this.hostId
-    //     });
-    //     x++;
-    //   }
-    // }
+
+    // Tilføj kaleprofilename til array kaleRicipes, så bruger kan indtaste det igen
+
+    // console.log(this.eventForm.value);
+    x = 0;
+    while (x < controlRecipes.length) {
+      controlRecipes.at(x).get('kaleProfileName').enable();
+      x++;
+    }
+    // Tilføj kaleprofilename til array kaleBeers, så bruger kan indtaste det igen
+    x = 0;
+    while (x < controlBeers.length) {
+      controlBeers.at(x).get('kaleProfileName').enable();
+      x++;
+    }
   }
 
   initRecipes() {
     return this.fb.group({
+      kaleProfileName: ['', Validators.required],
       name: [
         '',
         [Validators.required, Validators.minLength(5), Validators.maxLength(50)]
       ],
-      kaleProfileId: [-1, [ Validators.required, Validators.min(1)]],
+      kaleProfileId: [-1, [Validators.required, Validators.min(1)]],
       coursOfAction: [
         '',
         [
@@ -142,12 +168,12 @@ export class NewEventComponent implements OnInit {
 
   initBeers() {
     return this.fb.group({
+      kaleProfileName: ['', Validators.required],
       name: [
         '',
         [Validators.required, Validators.minLength(3), Validators.maxLength(50)]
       ],
       kaleProfileId: [-1, [Validators.required, Validators.min(1)]],
-      // Hvordan får jeg kaleProfileId ind her??
       description: [
         '',
         [
@@ -164,11 +190,18 @@ export class NewEventComponent implements OnInit {
   addBeer(): void {
     const control = <FormArray>this.eventForm.controls['kaleBeers'];
     control.push(this.initBeers());
-    console.log(this.users);
   }
 
   removeBeer(i: number): void {
     const control = <FormArray>this.eventForm.controls['kaleBeers'];
     control.removeAt(i);
+  }
+}
+
+/** Error when invalid control is invalid AND touched*/
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.touched));
   }
 }
