@@ -19,11 +19,9 @@ export class BeerPageComponent implements OnInit {
 
   ngOnInit() {
     this.beers = this.route.queryParamMap.switchMap((params: ParamMap) => {
-      const a = params.get('PageSize');
-      const b = params.get('PageNumber');
       const c: Parameters[] = [
-        { param: 'PageSize', value: a },
-        { param: 'PageNumber', value: b }
+        { param: 'PageSize', value: params.get('PageSize') },
+        { param: 'PageNumber', value: params.get('PageNumber') }
       ];
 
       return this.beerService.GetWithParams(c);

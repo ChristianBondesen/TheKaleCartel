@@ -8,7 +8,7 @@ export abstract class BackendGetService<T> {
   public GetAll(): Observable<T[]> {
     return this.http.get<T[]>(this.url);
   }
-  public GetOne(id: string): Observable<T> {
+  public GetOne(id: number): Observable<T> {
     return this.http.get<T>(this.url + id);
   }
   public GetByName(name: string): Observable<T> {

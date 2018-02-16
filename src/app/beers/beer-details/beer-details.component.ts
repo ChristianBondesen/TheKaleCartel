@@ -10,13 +10,13 @@ import { Beer } from '../../Shared Components/beer/Beer';
   styleUrls: ['./beer-details.component.css']
 })
 export class BeerDetailsComponent implements OnInit {
-  BeerId: string;
+  BeerId: number;
   Beer: Beer;
   constructor(private activatedRoute: ActivatedRoute, private beerService: GetBeerService) { }
 
   ngOnInit() {
-    this.BeerId = this.activatedRoute.snapshot.paramMap.get('id');
-    this.beerService.GetOne('id/' + this.BeerId).subscribe((beer) => {
+    this.BeerId = +this.activatedRoute.snapshot.paramMap.get('id');
+    this.beerService.GetOne(this.BeerId).subscribe((beer) => {
       this.Beer = beer;
     });
   }

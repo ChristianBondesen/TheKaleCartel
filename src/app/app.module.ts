@@ -16,6 +16,7 @@ import { ProfileGetService } from './profiles/profile-get.service';
 import { TotalUserGetService } from './profiles/profile-details/total-user-get';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EventPostService } from './event/new-event/event-post.service';
+import { ProfileExtractionService } from './Shared Components/profile-extraction.service';
 
 @NgModule({
   declarations: [
@@ -39,8 +40,9 @@ import { EventPostService } from './event/new-event/event-post.service';
     ProfileGetService,
     TotalUserGetService,
     EventGetService,
-    EventPostService
+    EventPostService,
+    ProfileExtractionService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

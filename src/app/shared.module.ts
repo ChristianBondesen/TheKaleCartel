@@ -142,7 +142,7 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     FormsModule, RouterModule
   ], providers: [
-    ProfileExtractionService
+
   ]
 })
 export class SharedModule { }
