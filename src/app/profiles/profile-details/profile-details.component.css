@@ -23,3 +23,18 @@
 .content {
   font-weight: 800;
 }
+
+.columContainer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: auto;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+.columDiv {
+ display: flex;
+}

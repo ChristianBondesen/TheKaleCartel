@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { TotalUser } from '../profiles/User';
-import { CaleEvent } from './caleEvent';
 import { BackendGetService } from '../Shared Components/BackendGetService';
+import { CaleEventGet } from './caleEventGet';
 
 @Injectable()
-export class EventGetService extends BackendGetService<CaleEvent> {
-  public url = 'https://thekalecartelwebapi.azurewebsites.net/api/events/';
+export class EventGetService extends BackendGetService<CaleEventGet> {
+  public url = 'https://thekalecartelwebapi.azurewebsites.net/api/kaleevents/';
 }

@@ -14,6 +14,10 @@ import { EventGetService } from './event/event-get.service';
 import { GetBeerService } from './Shared Components/beer/GetBeer.service';
 import { ProfileGetService } from './profiles/profile-get.service';
 import { TotalUserGetService } from './profiles/profile-details/total-user-get';
+import { ReactiveFormsModule } from '@angular/forms';
+import { EventPostService } from './event/new-event/event-post.service';
+import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material';
+import { ProfileExtractionService } from './Shared Components/profile-extraction.service';
 
 @NgModule({
   declarations: [
@@ -25,6 +29,7 @@ import { TotalUserGetService } from './profiles/profile-details/total-user-get';
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     FeatureRoutingModule,
     HttpClientModule,
@@ -35,8 +40,11 @@ import { TotalUserGetService } from './profiles/profile-details/total-user-get';
     GetBeerService,
     ProfileGetService,
     TotalUserGetService,
-    EventGetService
+    EventGetService,
+    EventPostService,
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
+    ProfileExtractionService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

@@ -17,4 +17,12 @@ export abstract class BackendGetService<T> {
   public PostNew(toPost: T): Observable<T> {
     return this.http.post<T>(this.url, toPost);
   }
+  public GetWithParams(params: Parameters[]): Observable<T[]> {
+    const stringParams = params.map(data => `${data.param}=${data.value}`).join('&');
+    return this.http.get<T[]>(`${this.url}?${stringParams}`);
+  }
+}
+export interface Parameters {
+  param: string | 'PageSize' | 'PageNumber';
+  value: string;
 }
