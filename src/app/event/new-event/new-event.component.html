@@ -63,7 +63,7 @@
 
 
           <mat-form-field *ngIf="!hostBringsBeerField">
-            <mat-select placeholder="Bajer ejer">
+            <mat-select placeholder="Bajer ejer" formControlName="kaleProfileName" [errorStateMatcher]="matcher">
               <mat-option *ngFor="let user of profileServce.users" [value]="user.name" (click)="setBeerBringerId(user.name, i)">
                 {{ user.name }}
               </mat-option>

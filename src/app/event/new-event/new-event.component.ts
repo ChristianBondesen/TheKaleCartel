@@ -104,12 +104,20 @@ export class NewEventComponent implements OnInit {
   }
   save(): void {
     // slet først kaleprofilename fra array kalericipes, fordi backenden ikke skal bruge den
-    const control = <FormArray>this.eventForm.get('kaleRecipes');
+    const controlRecipes = <FormArray>this.eventForm.get('kaleRecipes');
+    const controlBeers = <FormArray>this.eventForm.get('kaleBeers');
     let x = 0;
-    while (x < control.length) {
-      control.at(x).get('kaleProfileName').disable();
+    while (x < controlRecipes.length) {
+      controlRecipes.at(x).get('kaleProfileName').disable();
       x++;
     }
+    x = 0;
+    while (x < controlBeers.length) {
+      controlBeers.at(x).get('kaleProfileName').disable();
+      x++;
+    }
+
+
     // send lortet
 
     // this.postService.PostNew(this.eventForm.value).subscribe();
@@ -118,8 +126,13 @@ export class NewEventComponent implements OnInit {
 
     console.log(this.eventForm.value);
     x = 0;
-    while (x < control.length) {
-      control.at(x).get('kaleProfileName').enable();
+    while (x < controlRecipes.length) {
+      controlRecipes.at(x).get('kaleProfileName').enable();
+      x++;
+    }
+    x = 0;
+    while (x < controlBeers.length) {
+      controlBeers.at(x).get('kaleProfileName').enable();
       x++;
     }
   }
@@ -155,6 +168,7 @@ export class NewEventComponent implements OnInit {
 
   initBeers() {
     return this.fb.group({
+      kaleProfileName: ['', Validators.required],
       name: [
         '',
         [Validators.required, Validators.minLength(3), Validators.maxLength(50)]
