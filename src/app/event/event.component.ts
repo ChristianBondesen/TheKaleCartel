@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CaleEvent } from './caleEvent';
 import { EventGetService } from './event-get.service';
 import { Observable } from 'rxjs/Observable';
+import { CaleEventGet } from './caleEventGet';
 
 @Component({
   selector: 'app-event',
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class EventComponent implements OnInit {
   buttonNewEventShow = false;
-  caleEvents: CaleEvent[];
+  caleEvents: CaleEventGet[];
   displayedColumns = ['name', 'kaleProfileName', 'eventDate', 'beerName', 'recipeName'];
 
   constructor(private eventGet: EventGetService) { }

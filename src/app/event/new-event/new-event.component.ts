@@ -8,11 +8,11 @@ import {
   FormGroupDirective,
   NgForm
 } from '@angular/forms';
-import { CaleEvent } from '../caleEvent';
 import { ProfileExtractionService } from '../../Shared Components/profile-extraction.service';
 import { User } from '../../profiles/User';
 import { EventPostService } from './event-post.service';
 import { ErrorStateMatcher } from '@angular/material';
+import { CaleEventPost } from '../caleEventPost';
 
 @Component({
   selector: 'app-new-event',
@@ -21,7 +21,7 @@ import { ErrorStateMatcher } from '@angular/material';
 })
 export class NewEventComponent implements OnInit {
   eventForm: FormGroup;
-  caleEvent: CaleEvent = new CaleEvent();
+  caleEvent: CaleEventPost = new CaleEventPost();
   users: User[];
   hostBringsBeerField = true;
   hostId: number;
@@ -77,7 +77,16 @@ export class NewEventComponent implements OnInit {
         });
         x++;
       }
-      // }
+
+
+      // slet først kaleprofilename fra array kaleBeers, fordi vi ikke vil validere på den, når det er host der tager bajer med
+      const controlBeers = <FormArray>this.eventForm.get('kaleBeers');
+      x = 0;
+      while (x < controlBeers.length) {
+        controlBeers.at(x).get('kaleProfileName').disable();
+        x++;
+      }
+
     }
 
     if (!v) {
@@ -90,7 +99,14 @@ export class NewEventComponent implements OnInit {
         });
         x++;
       }
-      // }
+
+      // Gør kaleprofilename aktivt igen, så vi kan validere på den :3 
+      const controlBeers = <FormArray>this.eventForm.get('kaleBeers');
+      x = 0;
+      while (x < controlBeers.length) {
+        controlBeers.at(x).get('kaleProfileName').enable();
+        x++;
+      }
     }
 
     this.hostBringsBeerField = v;
@@ -111,7 +127,6 @@ export class NewEventComponent implements OnInit {
       controlRecipes.at(x).get('kaleProfileName').disable();
       x++;
     }
-
     // slet først kaleprofilename fra array kaleBeers, fordi backenden ikke skal bruge den
     x = 0;
     while (x < controlBeers.length) {
@@ -119,7 +134,16 @@ export class NewEventComponent implements OnInit {
       x++;
     }
     // send lortet
-    this.postService.PostNew(this.eventForm.value).subscribe();
+    this.caleEvent.kaleProfileId = this.eventForm.value.kaleProfileId;
+    this.caleEvent.eventDate = this.eventForm.value.eventDate;
+    this.caleEvent.name = this.eventForm.value.name;
+    this.caleEvent.kaleBeers = this.eventForm.value.kaleBeers;
+    this.caleEvent.kaleRecipes = this.eventForm.value.kaleRecipes;
+
+    // the.eventForm.value.copy
+    // Object.assign({}, this.eventForm.value);
+    // this.eventForm.value;
+    this.postService.PostNew(this.caleEvent).subscribe();
 
     // Tilføj kaleprofilename til array kaleRicipes, så bruger kan indtaste det igen
 
@@ -145,7 +169,7 @@ export class NewEventComponent implements OnInit {
         [Validators.required, Validators.minLength(5), Validators.maxLength(50)]
       ],
       kaleProfileId: [-1, [Validators.required, Validators.min(1)]],
-      coursOfAction: [
+      courseOfAction : [
         '',
         [
           Validators.required,
