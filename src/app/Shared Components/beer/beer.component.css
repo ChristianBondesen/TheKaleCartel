@@ -1,0 +1,17 @@
+a {
+  display: flex;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #0a010150 ;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  min-height: 3em;
+  min-width: 200px;
+  margin: 0.5em;
+  background: #2fad59;
+
+  font-weight: 500;
+  border-radius: 3px;
+
+}
