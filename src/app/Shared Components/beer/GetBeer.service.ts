@@ -6,5 +6,5 @@ import { BackendGetService } from '../BackendGetService';
 
 @Injectable()
 export class GetBeerService extends BackendGetService<Beer> {
-  public url = 'http://thekalecartelwebapi.azurewebsites.net/api/KaleBeer/';
+  public url = 'http://thekalecartelwebapi.azurewebsites.net/api/kalebeer/';
 }

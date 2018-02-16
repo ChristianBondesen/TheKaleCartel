@@ -45,6 +45,7 @@ import { BeerComponent } from './Shared Components/beer/beer.component';
 import { RecipeComponent } from './Shared Components/recipe/recipe.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ProfileExtractionService } from './Shared Components/profile-extraction.service';
+import { RouterModule } from '@angular/router';
 
 /**
  * NgModule that includes all Material modules.
@@ -139,9 +140,9 @@ import { ProfileExtractionService } from './Shared Components/profile-extraction
     PlatformModule,
     PortalModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule, RouterModule
   ], providers: [
-    ProfileExtractionService
+
   ]
 })
 export class SharedModule { }
