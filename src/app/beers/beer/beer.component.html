@@ -1,0 +1,6 @@
+<div *ngIf="(beers|async).length === 0"> Ingen bajer endnu boiz</div>
+
+<div *ngFor="let beer of beers | async">
+  <app-beer [Beer]="beer"></app-beer>
+
+</div>

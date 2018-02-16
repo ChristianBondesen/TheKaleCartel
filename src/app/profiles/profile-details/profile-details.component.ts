@@ -26,4 +26,14 @@ export class ProfileDetailsComponent implements OnInit {
       this.user = Object.assign({}, data);
     });
   }
+
+
+  Validate(i: number): boolean {
+    const a = i % 2;
+    if (a === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

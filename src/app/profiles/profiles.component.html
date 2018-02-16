@@ -1,5 +1,6 @@
 <div id="div2">
   <div id="div1" class="example-card" *ngFor="let profile of profiles | async">
+    <div *ngIf="profile.pictureUrl">
     <mat-card class="example-card">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
@@ -16,5 +17,7 @@
         <a [routerLink]="[profile.name]" mat-button>Profile Details</a>
       </mat-card-actions>
     </mat-card>
+    </div>
+
   </div>
 </div>

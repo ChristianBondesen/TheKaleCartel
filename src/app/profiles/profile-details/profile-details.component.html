@@ -1,34 +1,45 @@
 <div class="headerContainer">
-    <div class="header">
-        {{ (user)?.name }}
-    </div>
+  <div class="header">
+    {{ (user)?.name }}
+  </div>
 </div>
 <mat-card class="body">
-    <mat-card>
-        Kål Niveau: {{ (user)?.totalKaleLevel }}
-    </mat-card>
-    <mat-card>
-        Beskrivelse: {{ (user)?.description }}
-    </mat-card>
-    <mat-expansion-panel>
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                Det våde:
-            </mat-panel-title>
-        </mat-expansion-panel-header>
+  <mat-card>
+    Kål Niveau: {{ (user)?.totalKaleLevel }}
+  </mat-card>
+  <mat-card>
+    Beskrivelse: {{ (user)?.description }}
+  </mat-card>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Det våde:
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="columContainer">
 
-        <app-beer *ngFor="let beer of user.kaleBeers" [Beer]="beer"></app-beer>
+      <div *ngFor="let beer of user.kaleBeers; let i = index;">
+        <div class="columDiv" *ngIf="Validate(i)">
+          <app-beer [Beer]="beer"></app-beer>
+        </div>
+        <div class="columDiv" *ngIf="!Validate(i)">
+          <app-beer [Beer]="beer"></app-beer>
+        </div>
+      </div>
 
-    </mat-expansion-panel>
+    </div>
 
-    <mat-expansion-panel>
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                Det faste:
-            </mat-panel-title>
-        </mat-expansion-panel-header>
 
-        {{ (user)?.kaleRecipes | json}}
+  </mat-expansion-panel>
 
-    </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Det faste:
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    {{ (user)?.kaleRecipes | json}}
+
+  </mat-expansion-panel>
 </mat-card>
