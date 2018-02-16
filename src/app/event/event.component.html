@@ -2,5 +2,48 @@
   {{buttonNewEventShow ? 'Hide' : 'Create'}} new event
 </button>
 <app-new-event *ngIf='buttonNewEventShow'></app-new-event>
-<div>Event works - List of events shows here... eventually..</div>
-<!-- {{(caleEvents|async)[0].name}} -->
+
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="caleEvents">
+
+    <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+    <ng-container matColumnDef="kaleProfileName">
+      <mat-header-cell *matHeaderCellDef> Host navn </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.kaleProfileName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="eventDate">
+      <mat-header-cell *matHeaderCellDef> Event dato </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.eventDate | date}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Event navn </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="beerName">
+      <mat-header-cell *matHeaderCellDef> Bajer </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-button [matMenuTriggerFor]="menu">Åben bajer</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item *ngFor="let beer of element.kaleBeers" [routerLink]="['/beer', beer.kaleBeerId]">{{beer.name}}</button>
+        </mat-menu>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="recipeName">
+      <mat-header-cell *matHeaderCellDef> Opskrift navn </mat-header-cell>
+      <mat-cell *matCellDef="let element"> Opskrift </mat-cell>
+    </ng-container>
+
+
+
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

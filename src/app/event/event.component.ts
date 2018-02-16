@@ -9,13 +9,17 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./event.component.css']
 })
 export class EventComponent implements OnInit {
-  buttonNewEventShow = true;
-  caleEvents: Observable<CaleEvent[]>;
+  buttonNewEventShow = false;
+  caleEvents: CaleEvent[];
+  displayedColumns = ['name', 'kaleProfileName', 'eventDate', 'beerName', 'recipeName'];
 
   constructor(private eventGet: EventGetService) { }
 
   ngOnInit() {
-  this.caleEvents = this.eventGet.GetAll();
+    this.eventGet.GetAll().subscribe(d => {
+      this.caleEvents = d;
+    });
+  // this.caleEvents = this.eventGet.GetAll();
   }
   clickNewEvent(): void {
   this.buttonNewEventShow = !this.buttonNewEventShow;

@@ -12,8 +12,9 @@
 
     <mat-form-field>
       <input matInput [matDatepicker]="picker" placeholder="Vælg dato" formControlName="eventDate" [errorStateMatcher]="matcher">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
+      <mat-datepicker-toggle matSuffix [for]="picker" >
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker ></mat-datepicker>
       <span *ngIf="(eventForm.get('eventDate').touched ||
       eventForm.get('eventDate').dirty) &&
       eventForm.get('eventDate').errors">
@@ -196,8 +197,7 @@
 </form>
 
 <div>
-  <button mat-raised-button type="submit" (click)="save()" [disabled]="eventForm.valid"> 
-    <!-- HUSK AT SÆTTE "!" VED EVENTFORM.VALID IGEN -->
+  <button mat-raised-button type="submit" (click)="save()" [disabled]="!eventForm.valid"> 
     Save new event
   </button>
 </div>

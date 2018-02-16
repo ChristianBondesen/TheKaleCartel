@@ -103,33 +103,33 @@ export class NewEventComponent implements OnInit {
     });
   }
   save(): void {
-    // slet først kaleprofilename fra array kalericipes, fordi backenden ikke skal bruge den
     const controlRecipes = <FormArray>this.eventForm.get('kaleRecipes');
     const controlBeers = <FormArray>this.eventForm.get('kaleBeers');
+    // slet først kaleprofilename fra array kalericipes, fordi backenden ikke skal bruge den
     let x = 0;
     while (x < controlRecipes.length) {
       controlRecipes.at(x).get('kaleProfileName').disable();
       x++;
     }
+
+    // slet først kaleprofilename fra array kaleBeers, fordi backenden ikke skal bruge den
     x = 0;
     while (x < controlBeers.length) {
       controlBeers.at(x).get('kaleProfileName').disable();
       x++;
     }
-
-
     // send lortet
+    this.postService.PostNew(this.eventForm.value).subscribe();
 
-    // this.postService.PostNew(this.eventForm.value).subscribe();
+    // Tilføj kaleprofilename til array kaleRicipes, så bruger kan indtaste det igen
 
-    // Tilføj kaleprofilename til array kalericipes, så bruger kan indtaste det igen
-
-    console.log(this.eventForm.value);
+    // console.log(this.eventForm.value);
     x = 0;
     while (x < controlRecipes.length) {
       controlRecipes.at(x).get('kaleProfileName').enable();
       x++;
     }
+    // Tilføj kaleprofilename til array kaleBeers, så bruger kan indtaste det igen
     x = 0;
     while (x < controlBeers.length) {
       controlBeers.at(x).get('kaleProfileName').enable();
