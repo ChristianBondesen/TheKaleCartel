@@ -77,7 +77,16 @@ export class NewEventComponent implements OnInit {
         });
         x++;
       }
-      // }
+
+
+      // slet først kaleprofilename fra array kaleBeers, fordi vi ikke vil validere på den, når det er host der tager bajer med
+      const controlBeers = <FormArray>this.eventForm.get('kaleBeers');
+      x = 0;
+      while (x < controlBeers.length) {
+        controlBeers.at(x).get('kaleProfileName').disable();
+        x++;
+      }
+
     }
 
     if (!v) {
@@ -90,7 +99,14 @@ export class NewEventComponent implements OnInit {
         });
         x++;
       }
-      // }
+
+      // Gør kaleprofilename aktivt igen, så vi kan validere på den :3 
+      const controlBeers = <FormArray>this.eventForm.get('kaleBeers');
+      x = 0;
+      while (x < controlBeers.length) {
+        controlBeers.at(x).get('kaleProfileName').enable();
+        x++;
+      }
     }
 
     this.hostBringsBeerField = v;
