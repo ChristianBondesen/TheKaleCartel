@@ -31,11 +31,6 @@ export class NewEventComponent implements OnInit {
 
   ngOnInit(): void {
     this.eventForm = this.fb.group({
-      // selectionbox
-      kaleProfileName: [
-        '',
-        [Validators.required, Validators.minLength(2), Validators.maxLength(20)]
-      ],
       kaleProfileId: 0,
       eventDate: ['', [Validators.required]],
       name: [
