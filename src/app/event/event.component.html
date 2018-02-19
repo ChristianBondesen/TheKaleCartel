@@ -1,7 +1,12 @@
+<br>
+<div>
 <button mat-raised-button (click)='clickNewEvent()'>
   {{buttonNewEventShow ? 'Hide' : 'Create'}} new event
 </button>
+</div>
+<br>
 <app-new-event *ngIf='buttonNewEventShow'></app-new-event>
+
 
 <div class="example-container mat-elevation-z8">
   <mat-table #table [dataSource]="caleEvents">
@@ -35,8 +40,13 @@
     </ng-container>
 
     <ng-container matColumnDef="recipeName">
-      <mat-header-cell *matHeaderCellDef> Opskrift navn </mat-header-cell>
-      <mat-cell *matCellDef="let element"> Opskrift </mat-cell>
+      <mat-header-cell *matHeaderCellDef> Opskrift </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+          <button mat-button [matMenuTriggerFor]="menu">Åben opskrift</button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item *ngFor="let recipe of element.kaleRecipes" [routerLink]="['/recipies/details', recipe.kaleRecipeId]">{{recipe.name}}</button>
+          </mat-menu>
+      </mat-cell>
     </ng-container>
 
 
@@ -47,3 +57,8 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
 </div>
+
+<br>
+<button mat-raised-button (click)="ngOnInit()">
+  Refresh page
+</button>

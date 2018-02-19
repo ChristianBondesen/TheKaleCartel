@@ -171,17 +171,17 @@
 
 
           <mat-form-field class="example-full-width">
-            <textarea matInput placeholder="Fremgangsmåde" type="text" formControlName="coursOfAction" [errorStateMatcher]="matcher"> </textarea>
-            <span *ngIf="(eventForm.get('kaleRecipes')['controls'][i].controls.coursOfAction.touched || 
-            eventForm.get('kaleRecipes')['controls'][i].controls.coursOfAction.dirty) &&
-            eventForm.get('kaleRecipes')['controls'][i].controls.coursOfAction.errors">
-              <mat-error *ngIf="eventForm.get('kaleRecipes')['controls'][i].controls.coursOfAction.errors.required ">
+            <textarea matInput placeholder="Fremgangsmåde" type="text" formControlName="courseOfAction" [errorStateMatcher]="matcher"> </textarea>
+            <span *ngIf="(eventForm.get('kaleRecipes')['controls'][i].controls.courseOfAction.touched || 
+            eventForm.get('kaleRecipes')['controls'][i].controls.courseOfAction.dirty) &&
+            eventForm.get('kaleRecipes')['controls'][i].controls.courseOfAction.errors">
+              <mat-error *ngIf="eventForm.get('kaleRecipes')['controls'][i].controls.courseOfAction.errors.required ">
                 Fremgangsmåde er påkrævet
               </mat-error>
-              <mat-error *ngIf="eventForm.get('kaleRecipes')['controls'][i].controls.coursOfAction.errors.minlength ">
+              <mat-error *ngIf="eventForm.get('kaleRecipes')['controls'][i].controls.courseOfAction.errors.minlength ">
                 Fremgangsmåde er for kort
               </mat-error>
-              <mat-error *ngIf="eventForm.get('kaleRecipes')['controls'][i].controls.coursOfAction.errors.maxlength ">
+              <mat-error *ngIf="eventForm.get('kaleRecipes')['controls'][i].controls.courseOfAction.errors.maxlength ">
                 Fremgangsmåde er for lang
               </mat-error>
             </span>
@@ -201,7 +201,4 @@
     Save new event
   </button>
 </div>
-<br>Dirty: {{eventForm.dirty}}
-<br>Touched: {{eventForm.touched}}
-<br>Valid: {{eventForm.valid}}
-<br>Value: {{eventForm.value | json }}
+

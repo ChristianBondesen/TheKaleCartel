@@ -10,7 +10,7 @@ import { RecipeCreateComponent } from './recipe-create/recipe-create.component';
 
 const routes: Routes = [
   { path: '', component: RecipeListComponent },
-  { path: 'name/:name', component: RecipeDetailsComponent },
+  { path: 'details/:id', component: RecipeDetailsComponent },
   { path: 'create', component: RecipeCreateComponent }
 ];
 
