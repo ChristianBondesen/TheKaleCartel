@@ -9,7 +9,7 @@ import { CaleEventGet } from './caleEventGet';
   styleUrls: ['./event.component.css']
 })
 export class EventComponent implements OnInit {
-  buttonNewEventShow = false;
+  buttonNewEventShow = true; //TODO Skift til false
   caleEvents: CaleEventGet[];
   displayedColumns = ['name', 'kaleProfileName', 'eventDate', 'beerName', 'recipeName'];
 
