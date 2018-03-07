@@ -1,124 +1,138 @@
 <form (ngsubmit)="save()" [formGroup]="eventForm">
   <fieldset>
 
-    <div>
-      <mat-form-field>
-        <mat-select placeholder="Vælg host" formControlName="kaleProfileName" [errorStateMatcher]="matcher">
-          <mat-option *ngFor="let user of profileServce.users" [value]="user.name" (click)="setHostId(user.name)">
-            {{ user.name }}
-          </mat-option>
-        </mat-select>
+    <mat-form-field>
+      <mat-select placeholder="Vælg host" formControlName="kaleProfileName" [errorStateMatcher]="matcher">
+        <mat-option *ngFor="let user of profileServce.users" [value]="user.name" (click)="setHostId(user.name)">
+          {{ user.name }}
+        </mat-option>
+      </mat-select>
 
-      </mat-form-field>
+    </mat-form-field>
 
-      <mat-form-field>
-        <input matInput [matDatepicker]="picker" placeholder="Vælg dato" formControlName="eventDate" [errorStateMatcher]="matcher">
-        <mat-datepicker-toggle matSuffix [for]="picker">
-        </mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-          <mat-error *ngIf="rootDisplayMessage.eventDate">
-            {{rootDisplayMessage.eventDate}}
-          </mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="Event navn" type="text" formControlName="name" [errorStateMatcher]="matcher">
-        <mat-error *ngIf="rootDisplayMessage.name">
-          {{rootDisplayMessage.name}}
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Vælg dato" formControlName="eventDate" [errorStateMatcher]="matcher">
+      <mat-datepicker-toggle matSuffix [for]="picker" >
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker ></mat-datepicker>
+      <span *ngIf="(eventForm.get('eventDate').touched ||
+      eventForm.get('eventDate').dirty) &&
+      eventForm.get('eventDate').errors">
+        <mat-error *ngIf="eventForm.get('eventDate').hasError('required')">
+          Dato er påkrævet
         </mat-error>
-      </mat-form-field>
-    </div>
+      </span>
+    </mat-form-field>
 
-    <br>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Event navn" type="text" formControlName="name" [errorStateMatcher]="matcher">
+      <span *ngIf="(eventForm.get('name').touched ||
+      eventForm.get('name').dirty) &&
+      eventForm.get('name').errors">
+        <mat-error *ngIf="eventForm.get('name').hasError('required')">
+          Event navn er påkrævet
+        </mat-error>
+        <mat-error *ngIf="eventForm.get('name').hasError('minlength')">
+          Event navn er ikke langt nok
+        </mat-error>
+        <mat-error *ngIf="eventForm.get('name').hasError('maxlength')">
+          Event navn er for langt
+        </mat-error>
+      </span>
+    </mat-form-field>
+
     <mat-divider></mat-divider>
 
+    <h2>BAJER</h2>
+
+    <mat-error *ngIf="!hostId">
+      Vælg host
+    </mat-error>
+
     <div>
-      <h2>BAJER</h2>
+      <mat-radio-group *ngIf="hostId">
+        <mat-radio-button (click)="hostBringsBeer(true)" value="1">Host tager bajer med</mat-radio-button>
+        <mat-radio-button (click)="hostBringsBeer(false)" value="2">Gæst tager bajer med</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <button mat-raised-button (click)="addBeer()">Tilføj bajer</button>
 
-      <mat-error *ngIf="!hostId">
-        Vælg host
-      </mat-error>
+    <div formArrayName="kaleBeers">
+      <div *ngFor="let kaleBeer of eventForm.get('kaleBeers')['controls'] ; let i=index">
 
-      <div>
-        <mat-radio-group *ngIf="hostId">
-          <mat-radio-button (click)="hostBringsBeer(true)" value="1">Host tager bajer med</mat-radio-button>
-          <mat-radio-button (click)="hostBringsBeer(false)" value="2">Gæst tager bajer med</mat-radio-button>
-        </mat-radio-group>
-      </div>
-      <button mat-raised-button (click)="addBeer()">Tilføj bajer</button>
-
-      <div formArrayName="kaleBeers">
-        <div *ngFor="let kaleBeer of eventForm.get('kaleBeers')['controls'] ; let i=index">
-
-          <div [formGroupName]="i">
+        <div [formGroupName]="i">
 
 
-            <mat-form-field *ngIf="!hostBringsBeerField">
-              <mat-select placeholder="Bajer ejer" formControlName="kaleProfileName" [errorStateMatcher]="matcher">
-                <mat-option *ngFor="let user of profileServce.users" [value]="user.name" (click)="setBeerBringerId(user.name, i)">
-                  {{ user.name }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
+          <mat-form-field *ngIf="!hostBringsBeerField">
+            <mat-select placeholder="Bajer ejer" formControlName="kaleProfileName" [errorStateMatcher]="matcher">
+              <mat-option *ngFor="let user of profileServce.users" [value]="user.name" (click)="setBeerBringerId(user.name, i)">
+                {{ user.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
 
-            <mat-form-field class="example-full-width">
-              <div>
-                <input matInput placeholder="Bajernavn" type="text" formControlName="name" [errorStateMatcher]="matcher">
-                  <mat-error *ngIf="beerDisplayMessage.name">
-                      {{beerDisplayMessage.name}}
-                  </mat-error>
-                  
-              </div>
-            </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <div>
+              <input matInput placeholder="Bajernavn" type="text" formControlName="name" [errorStateMatcher]="matcher">
+              <span *ngIf="(eventForm.get('kaleBeers')['controls'][i].controls.name.touched || 
+                          eventForm.get('kaleBeers')['controls'][i].controls.name.dirty) &&
+                          eventForm.get('kaleBeers')['controls'][i].controls.name.errors">
+                <mat-error *ngIf="eventForm.get('kaleBeers')['controls'][i].controls.name.errors.required ">
+                  Hey mand. Husk lige at skrive et navn for din bajer
+                </mat-error>
+                <mat-error *ngIf="eventForm.get('kaleBeers')['controls'][i].controls.name.errors.minlength ">
+                  Hey mand. Husk lige at navnet for din bajer skal være minst tre tegn mkay
+                </mat-error>
+              </span>
+            </div>
+          </mat-form-field>
 
 
 
-            <mat-form-field class="example-full-width">
-              <div>
-                <input matInput placeholder="Bajerprocenter" type="number" formControlName="volPercentage" [errorStateMatcher]="matcher">
-                <span *ngIf="(eventForm.get('kaleBeers')['controls'][i].controls.volPercentage.touched || 
+          <mat-form-field class="example-full-width">
+            <div>
+              <input matInput placeholder="Bajerprocenter" type="number" formControlName="volPercentage" [errorStateMatcher]="matcher">
+              <span *ngIf="(eventForm.get('kaleBeers')['controls'][i].controls.volPercentage.touched || 
             eventForm.get('kaleBeers')['controls'][i].controls.volPercentage.dirty) &&
             eventForm.get('kaleBeers')['controls'][i].controls.volPercentage.errors">
-                  <mat-error *ngIf="eventForm.get('kaleBeers')['controls'][i].controls.volPercentage.errors.required ">
-                    Alkohol procent er påkrævet
-                  </mat-error>
-                  <mat-error *ngIf="eventForm.get('kaleBeers')['controls'][i].controls.volPercentage.errors.min ">
-                    Alkohol procent er alt for lav
-                  </mat-error>
-                  <mat-error *ngIf="eventForm.get('kaleBeers')['controls'][i].controls.volPercentage.errors.max ">
-                    Alkohol procent er alt for høj
-                  </mat-error>
-                </span>
-              </div>
-            </mat-form-field>
+                <mat-error *ngIf="eventForm.get('kaleBeers')['controls'][i].controls.volPercentage.errors.required ">
+                  Alkohol procent er påkrævet
+                </mat-error>
+                <mat-error *ngIf="eventForm.get('kaleBeers')['controls'][i].controls.volPercentage.errors.min ">
+                  Alkohol procent er alt for lav
+                </mat-error>
+                <mat-error *ngIf="eventForm.get('kaleBeers')['controls'][i].controls.volPercentage.errors.max ">
+                  Alkohol procent er alt for høj
+                </mat-error>
+              </span>
+            </div>
+          </mat-form-field>
 
-            <mat-form-field class="example-full-width">
-              <div>
-                <textarea matInput placeholder="Bajerbeskrivelse" type="text" formControlName="description" [errorStateMatcher]="matcher"></textarea>
-                <span *ngIf="(eventForm.get('kaleBeers')['controls'][i].controls.description.touched || 
+          <mat-form-field class="example-full-width">
+            <div>
+              <textarea matInput placeholder="Bajerbeskrivelse" type="text" formControlName="description" [errorStateMatcher]="matcher"></textarea>
+              <span *ngIf="(eventForm.get('kaleBeers')['controls'][i].controls.description.touched || 
             eventForm.get('kaleBeers')['controls'][i].controls.description.dirty) &&
             eventForm.get('kaleBeers')['controls'][i].controls.description.errors">
-                  <mat-error *ngIf="eventForm.get('kaleBeers')['controls'][i].controls.description.errors.required ">
-                    Beskrivelse af øl påkrevet
-                  </mat-error>
-                  <mat-error *ngIf="eventForm.get('kaleBeers')['controls'][i].controls.description.errors.minlength ">
-                    Beskrivelse af øl er ikke lang nok
-                  </mat-error>
-                  <mat-error *ngIf="eventForm.get('kaleBeers')['controls'][i].controls.description.errors.maxlength ">
-                    Beskrivelse af øl er for lang
-                  </mat-error>
-                </span>
-              </div>
-            </mat-form-field>
-            <button mat-raised-button [disabled]="eventForm.get('kaleBeers')['controls'].length<2" (click)="removeBeer(i)">Fjern bajer</button>
+                <mat-error *ngIf="eventForm.get('kaleBeers')['controls'][i].controls.description.errors.required ">
+                  Beskrivelse af øl påkrevet
+                </mat-error>
+                <mat-error *ngIf="eventForm.get('kaleBeers')['controls'][i].controls.description.errors.minlength ">
+                  Beskrivelse af øl er ikke lang nok
+                </mat-error>
+                <mat-error *ngIf="eventForm.get('kaleBeers')['controls'][i].controls.description.errors.maxlength ">
+                  Beskrivelse af øl er for lang
+                </mat-error>
+              </span>
+            </div>
+          </mat-form-field>
+          <button mat-raised-button [disabled]="eventForm.get('kaleBeers')['controls'].length<2" (click)="removeBeer(i)">Fjern bajer</button>
 
-            <br>
-          </div>
+          <br>
         </div>
-
       </div>
+
     </div>
-    <br>
 
     <mat-divider></mat-divider>
 
@@ -129,7 +143,7 @@
       <div *ngFor="let kaleRecipe of eventForm.get('kaleRecipes')['controls'] ; let i=index">
 
         <div [formGroupName]="i">
-          <mat-form-field [hideRequiredMarker]="true">
+          <mat-form-field [hideRequiredMarker]="true" >
             <mat-select placeholder="Opskrift ejer" formControlName="kaleProfileName" [errorStateMatcher]="matcher">
               <mat-option *ngFor="let user of profileServce.users" [value]="user.name" (click)="setRecipeBringerId(user.name, i)">
                 {{ user.name }}
@@ -183,7 +197,8 @@
 </form>
 
 <div>
-  <button mat-raised-button type="submit" (click)="save()" [disabled]="!eventForm.valid">
+  <button mat-raised-button type="submit" (click)="save()" [disabled]="!eventForm.valid"> 
     Save new event
   </button>
 </div>
+

@@ -14,10 +14,6 @@ import { EventPostService } from './event-post.service';
 import { ErrorStateMatcher } from '@angular/material';
 import { CaleEventPost } from '../caleEventPost';
 import { Router } from '@angular/router';
-import { GenericValidator } from '../../Shared Components/generic-validator';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/do';
-
 
 @Component({
   selector: 'app-new-event',
@@ -30,71 +26,11 @@ export class NewEventComponent implements OnInit {
   users: User[];
   hostBringsBeerField = true;
   hostId: number;
-  matcher = new MyErrorStateMatcher();
-
-  // Use with the generic validation message class
-  rootDisplayMessage: { [key: string]: string } = {};
-  beerDisplayMessage: { [key: string]: string } = {};
-
-  private rootValidationMessages: { [key: string]: { [key: string]: string } };
-  private rootGenericValidator: GenericValidator;
-
-  private beerValidationMessages: { [key: string]: { [key: string]: string } };
-  private beerGenericValidator: GenericValidator;
-
-  private recipeValidationMessages: { [key: string]: { [key: string]: string } };
-  private recipeGenericValidator: GenericValidator;
+  matcher = new MyErrorStateMatcher(); // slet evt
 
   constructor(private fb: FormBuilder,
     public profileServce: ProfileExtractionService,
-    private postService: EventPostService) {
-
-    // Defines all of the validation messages for the form.
-    // These could instead be retrieved from a file or database.
-    this.rootValidationMessages = {
-      name: {
-        required: 'Navn for host er påkrævet',
-        minlength: 'Navn for host må mindst være 5 tegn',
-        maxlength: 'Navn for host må max være 20 tegn'
-      },
-      eventDate: {
-        required: 'HKM Dato er påkrævet'
-      }
-    };
-
-    this.beerValidationMessages = {
-      name: {
-        required: 'bajernavn er påkrævet HKM',
-        minlength: 'Navn for bajer må mindst være 3 tegn',
-        maxlength: 'Navn for bajer må max være 50 tegn'
-      }
-    }
-    // }  kaleBeersName: {
-    //   required: 'HKM Bajernavn påkrævet'
-    // }
-
-    // kaleProfileName: ['', Validators.required],
-    // name: [
-    //   '',
-    //   [Validators.required, Validators.minLength(3), Validators.maxLength(50)]
-    // ],
-    // kaleProfileId: [-1, [Validators.required, Validators.min(1)]],
-    // description: [
-    //   '',
-    //   [
-    //     Validators.required,
-    //     Validators.minLength(10),
-    //     Validators.maxLength(200)
-    //   ]
-    // ],
-    // // skal være tal
-    // volPercentage: ['', [Validators.required, Validators.min(1), Validators.max(99)]]
-
-    // Define an instance of the validator for use with this form, 
-    // passing in this form's set of validation messages.
-    this.rootGenericValidator = new GenericValidator(this.rootValidationMessages);
-    this.beerGenericValidator = new GenericValidator(this.beerValidationMessages);
-  }
+    private postService: EventPostService) { }
 
   ngOnInit(): void {
     this.eventForm = this.fb.group({
@@ -113,19 +49,7 @@ export class NewEventComponent implements OnInit {
       kaleRecipes: this.fb.array([this.initRecipes()])
     });
 
-    this.eventForm.valueChanges.debounceTime(800).subscribe(value => {
-      this.rootDisplayMessage = this.rootGenericValidator.processMessages(this.eventForm);
-      console.log(this.rootDisplayMessage)
-    });
-
-    this.eventForm.valueChanges.debounceTime(800).subscribe(value => {
-      this.beerDisplayMessage = this.beerGenericValidator.processMessages(<FormGroup>this.eventForm.get('kaleBeers'));
-      console.log(this.beerDisplayMessage)
-    });
-
   }
-
-
 
   setBeerBringerId(beerBringerName: string, i: number) {
     let beerBringerId: number;
@@ -248,7 +172,7 @@ export class NewEventComponent implements OnInit {
         [Validators.required, Validators.minLength(5), Validators.maxLength(50)]
       ],
       kaleProfileId: [-1, [Validators.required, Validators.min(1)]],
-      courseOfAction: [
+      courseOfAction : [
         '',
         [
           Validators.required,
